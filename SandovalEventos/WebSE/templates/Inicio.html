@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +9,20 @@
     <title>Sandoval Eventos</title>
     <link rel="stylesheet" href="{% static '/css/inicio.css' %}">
     <link rel="stylesheet" href="{% static '/css/carrusel.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/collage.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 
-<body>
+<body style="background-color: #880E4F;">
     <!--NavBar-->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light " style="background: rgba(0, 0, 0, .1); backdrop-filter: blur(10px);">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light"
+        style="background: rgba(0, 0, 0, .1); backdrop-filter: blur(10px); margin: auto;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-              {% load static %}
-              <img src="" alt="" width="250" height="35" class="d-inline-blockalign-text-top">
+                {% load static %}
+                <img src="" alt="" width="250" height="35" class="d-inline-blockalign-text-top">
             </a>
             <ul class="nav justify-content-end">
                 <li class="nav-item">
@@ -43,37 +47,102 @@
                 </li>
                 <li class="nav-item">
                     <a class="navbar-brand" href="#">
-                        <img src="{% static '/img/user.png'%}" alt="" width="40" height="35">
+                        <img src="{% static '/img/user.png'%}" alt="" width="37" height="33">
                     </a>
                 </li>
             </ul>
         </div>
     </nav>
 
-
     <!--Carrusel-->
-    <figure class="icon-cards mt-3">
-        <div class="icon-cards__content">
-          <div class="icon-cards__item d-flex align-items-center justify-content-center">
-            <img src="{% static '/img/car1.png'%}" alt="">
-          </div>
-          <div class="icon-cards__item d-flex align-items-center justify-content-center">
-            <img src="{% static '/img/car1.png'%}" alt="">
-          </div>
-          <div class="icon-cards__item d-flex align-items-center justify-content-center">
-            <img src="{% static '/img/car1.png'%}" alt="">
-          </div>
+    <div class="div-cont">
+        <figure class="icon-cards">
+            <div class="icon-cards__content">
+                <div class="icon-cards__item d-flex align-items-center justify-content-center">
+                    <img src="{% static '/img/car1.png'%}" alt="" width="600"
+                        style="border-radius: 3%; box-shadow: 0px 40px 60px rgba(0, 0, 0, 1);">
+                </div>
+                <div class="icon-cards__item d-flex align-items-center justify-content-center">
+                    <img src="{% static '/img/car2.png'%}" alt="" width="600"
+                        style="border-radius: 3%; box-shadow: 0px 40px 60px rgba(0, 0, 0, 1);">
+                </div>
+                <div class="icon-cards__item d-flex align-items-center justify-content-center">
+                    <img src="{% static '/img/car3.png'%}" alt="" width="600"
+                        style="border-radius: 3%; box-shadow: 0px 40px 60px rgba(0, 0, 0, 1);">
+                </div>
+            </div>
+        </figure>
+        <br><br><br><br>
+        <!--Btn Activar Animacion Carrusel-->
+        <center>
+            <div class="checkbox">
+                <input class="d-none" id="toggle-animation" type="checkbox" checked />
+                <label class="checkbox__checkbox" for="toggle-animation"></label>
+                <label class="checkbox__label" for="toggle-animation">Activar Animación</label>
+            </div>
+        </center>
+
+        <br><br><br>
+
+        <!--Titulo-->
+        <div>
+            <font face="times new roman" SIZE=7>
+                <center class="txt-blanco">Sandoval Eventos</center>
+            </font>
         </div>
-    </figure>
-     
-      <div class="checkbox">
-        <input class="d-none" id="toggle-animation" type="checkbox" checked />
-        <label class="checkbox__checkbox" for="toggle-animation"></label>
-        <label class="checkbox__label" for="toggle-animation">Toggle animation</label>
-      </div>
+
+        <br><br>
+
+        <!--Collage Fotos (Nosotros)-->
+        <div class="wrapper">
+            <figure class="figure-crsl">
+                <div class="post-image">
+                    <a href="" class="container-img-1">
+                        <img class="img-crsl" src="{% static '/img/matri1.png'%}" width="400" height="250"/>
+                        <div class="txt-img-1">¡Nos encantan las bodas!</div>
+                    </a>
+                </div>
+                <div class="post-image">
+                    <a href="" class="container-img-2">
+                        <img class="img-crsl image-2" src="{% static '/img/tabla1.png'%}" width="500" height="250"/>
+                        <div class="middle-img-2">
+                            <div class="text-img-2">Prueba nuestras diferentes tablas</div>
+                        </div>
+                    </a>
+                </div>
+            </figure>
+            <figure class="figure-crsl">
+                <div class="post-image">
+                    <div class="container-img-3">
+                        <img class="img-crsl img-3" src="{% static '/img/celebracion1.png'%}" width="800" height="250"/>
+                        <div class="top-left-img-3">Sandoval Eventos</div>
+                        <div class="center-txt-3">Somos una productora/organizdora de eventos con mas de 25 años 
+                            de experiencia, brindando uno de los mejores servicios dentro de este mercado. Operando 
+                            dentro de las regiones de Valparaiso y Metropolitana.</div>
+                        <div class="center-txt-32">Ofrecemos un servicio completo para ese evento que tanto tienes
+                             en mente. Ademas realizamos envios a domicilio de tablas para compartir con quien tu 
+                             mas desees.</div>
+                        <div class="center-txt-33">Hechale un vistazo a nuestro trabajo y si es de tu estilo no 
+                            dudes en cotizar tu evento, pedir una rica tabla o contactarnos, con mucho gusto 
+                            aclararemos todas tus dudas.</div>
+                    </div>
+                </div>
+            </figure>
+            <figure class="figure-crsl">
+                <div class="post-image">
+                    <img class="img-crsl" src="https://unsplash.it/375/250/?random" />
+                </div>
+                <div class="post-image">
+                    <img class="img-crsl" src="https://unsplash.it/396/264/?random" />
+                </div>
+                <div class="post-image">
+                    <img class="img-crsl" src="https://unsplash.it/399/266/?random" />
+                </div>
+            </figure>
+        </div>
 
 
-
+    </div>
 
 
 
@@ -88,6 +157,9 @@
 
 
     <script src="{% static '/js/carrusel.js'%}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

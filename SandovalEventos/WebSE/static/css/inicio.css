@@ -1,3 +1,12 @@
 .txt-nav {
-    color: black;
+    color: white;
+}
+
+.txt-blanco {
+    color: white;
+    box-shadow: 0px 20px 90px rgba(0, 0, 0, 1);
+}
+
+.div-cont {
+    background-color: #880E4F;
 }
