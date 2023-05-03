@@ -17,141 +17,153 @@
 
 
 <body>
-    
+
     <!--NavBar-->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light"
-        style="background: rgba(0, 0, 0, .1); backdrop-filter: blur(10px); margin: auto;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                {% load static %}
-                <img src="{% static '/img/SandovalEventosLetras.png'%}" alt="" width="230" height="40" class="d-inline-blockalign-text-top">
-            </a>
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <h6 class="txt-nav">Inicio</h6>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <h6 class="txt-nav">Nosotros</h6>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <h6 class="txt-nav">Servicios</h6>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <h6 class="txt-nav">Contacto</h6>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#">
-                        <img src="{% static '/img/usuario.png'%}" alt="" width="37" height="33">
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <br><br><br>
-    <div class="container d-flex align-items-center justify-content-center h-100">
-        <div class="cuadrado">
-          <h2>Sandoval Eventos</h2>
-          <p>Somos una productora/organizadora de eventos con mas de 25 años
-            de experiencia, brindando uno de los mejores servicios dentro de este mercado. Operando
-            dentro de las regiones de Valparaiso y Metropolitana.</p>
+    <div class="parallax">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light"
+            style="background: rgba(0, 0, 0, .1); backdrop-filter: blur(10px); margin: auto;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    {% load static %}
+                    <img src="{% static '/img/SandovalEventosLetras.png'%}" alt="" width="230" height="40"
+                        class="d-inline-blockalign-text-top">
+                </a>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <h6 class="txt-nav">Inicio</h6>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <h6 class="txt-nav">Nosotros</h6>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <h6 class="txt-nav">Servicios</h6>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <h6 class="txt-nav">Contacto</h6>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="#">
+                            <img src="{% static '/img/usuario.png'%}" alt="" width="37" height="33">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <br><br><br>
+
+        <div class="hero-text">
+            <h1 style="font-size:100px">Sandoval Eventos</h1>
+            <p>Productora y Organizadora de Eventos</p>
+            <button>Ver Servicios</button>
         </div>
     </div>
 
-    
-        <br><br><br>
-        <br><br><br><br>
-        <br>
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p>Nosotros</p>
+        </font>
+    </div>
 
-        <!--Titulo-->
-        <div class="titulo">
-            <font face="times new roman" SIZE=7>
-                <center class="txt-blanco">Sandoval Eventos</center>
-            </font>
-        </div>
-
-        <br><br>
-
-        <!--Collage Fotos (Nosotros)-->
-        <div class="wrapper">
-            <figure class="figure-crsl">
-                <div class="post-image">
-                    <a href="" class="container-img-1">
-                        <img class="img-crsl" src="{% static '/img/matri1.png'%}" width="400" height="250" />
-                        <div class="txt-img-1">¡Nos encantan las bodas!</div>
-                    </a>
-                </div>
-                <div class="post-image">
-                    <a href="" class="container-img-2">
-                        <img class="img-crsl image-2" src="{% static '/img/tabla1.png'%}" width="500" height="250" />
-                        <div class="middle-img-2">
-                            <div class="text-img-2">Prueba nuestras diferentes tablas</div>
-                        </div>
-                    </a>
-                </div>
-            </figure>
-            <figure class="figure-crsl">
-                <div class="post-image">
-                    <div class="container-img-3">
-                        <img class="img-crsl img-3" src="{% static '/img/celebracion1.png'%}" width="800"
-                            height="300" />
-                        <div class="top-left-img-3">Sandoval Eventos</div>
-                        <div class="center-txt-3">Somos una productora/organizadora de eventos con mas de 25 años
-                            de experiencia, brindando uno de los mejores servicios dentro de este mercado. Operando
-                            dentro de las regiones de Valparaiso y Metropolitana.</div>
-                        <div class="center-txt-32">Ofrecemos un servicio completo para ese evento que tanto tienes
-                            en mente. Ademas realizamos envios a domicilio de tablas para compartir con quien tu
-                            mas desees.</div>
-                        <div class="center-txt-33">Hechale un vistazo a nuestro trabajo y si es de tu estilo no
-                            dudes en cotizar tu evento, pedir una rica tabla o contactarnos, con mucho gusto
-                            aclararemos todas tus dudas.</div>
+    <!--Collage Fotos (Nosotros)-->
+    <div class="wrapper">
+        <figure class="figure-crsl">
+            <div class="post-image">
+                <a href="" class="container-img-1">
+                    <img class="img-crsl" src="{% static '/img/matri1.png'%}" width="400" height="250" />
+                    <div class="txt-img-1">¡Nos encantan las bodas!</div>
+                </a>
+            </div>
+            <div class="post-image">
+                <a href="" class="container-img-2">
+                    <img class="img-crsl image-2" src="{% static '/img/tabla1.png'%}" width="500" height="250" />
+                    <div class="middle-img-2">
+                        <div class="text-img-2">Prueba nuestras diferentes tablas</div>
                     </div>
+                </a>
+            </div>
+        </figure>
+        <figure class="figure-crsl">
+            <div class="post-image">
+                <div class="container-img-3">
+                    <img class="img-crsl img-3" src="{% static '/img/celebracion1.png'%}" width="800" height="300" />
+                    <div class="top-left-img-3">Sandoval Eventos</div>
+                    <div class="center-txt-3">Somos una productora/organizadora de eventos con mas de 25 años
+                        de experiencia, brindando uno de los mejores servicios dentro de este mercado. Operando
+                        dentro de las regiones de Valparaiso y Metropolitana.</div>
+                    <div class="center-txt-32">Ofrecemos un servicio completo para ese evento que tanto tienes
+                        en mente. Ademas realizamos envios a domicilio de tablas para compartir con quien tu
+                        mas desees.</div>
+                    <div class="center-txt-33">Hechale un vistazo a nuestro trabajo y si es de tu estilo no
+                        dudes en cotizar tu evento, pedir una rica tabla o contactarnos, con mucho gusto
+                        aclararemos todas tus dudas.</div>
                 </div>
-            </figure>
-            <figure class="figure-crsl">
-                <div class="post-image">
-                    <img class="img-crsl" src="https://unsplash.it/375/250/?random" />
-                </div>
-                <div class="post-image">
-                    <img class="img-crsl" src="https://unsplash.it/396/264/?random" />
-                </div>
-                <div class="post-image">
-                    <img class="img-crsl" src="https://unsplash.it/399/266/?random" />
-                </div>
-            </figure>
+            </div>
+        </figure>
+        <figure class="figure-crsl">
+            <div class="post-image">
+                <img class="img-crsl" src="https://unsplash.it/375/250/?random" />
+            </div>
+            <div class="post-image">
+                <img class="img-crsl" src="https://unsplash.it/396/264/?random" />
+            </div>
+            <div class="post-image">
+                <img class="img-crsl" src="https://unsplash.it/399/266/?random" />
+            </div>
+        </figure>
+    </div>
+
+    <br><br><br>
+
+    <!--Servicios-->
+    <div class="srvcs">
+        <font face="times new roman" SIZE=8>
+            <p>Servicios</p>
+        </font>
+    </div>
+
+    <br><br>
+
+    <div class="container-serv">
+        <img src="{% static '/img/matri1.png'%}" style="width:100%;">
+        <div class="content">
+            <h3>Matrimonio</h3>
         </div>
-
-        <br><br>
-
-        <!--Servicios-->
-        <div>
-            <font face="times new roman" SIZE=7>
-                <center class="txt-blanco">Servicios</center>
-            </font>
+    </div>
+    <div class="container-serv">
+        <img src="{% static '/img/matri1.png'%}" style="width:100%;">
+        <div class="content">
+            <h3>Celebración</h3>
         </div>
+    </div>
+    <div class="container-serv">
+        <img src="{% static '/img/coffeebreak.png'%}" style="width:100%;">
+        <div class="content">
+            <h3>Coffee Break</h3>
+        </div>
+    </div>
 
-        <br><br>
-
-        <!---->
-        
-
-
-
-
-
-
+    <!---->
 
 
 
 
-        <br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br>
     </div>
 
 
