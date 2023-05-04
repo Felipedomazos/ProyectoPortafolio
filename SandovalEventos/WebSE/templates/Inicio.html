@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="{% static '/css/inicio.css' %}">
     <link rel="stylesheet" href="{% static '/css/carrusel.css' %}">
     <link rel="stylesheet" href="{% static '/css/collage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 
-<body>
+<body style="background-color:rgb(250, 206, 252);">
 
     <!--NavBar-->
     <div class="parallax">
@@ -35,17 +36,17 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">
+                        <a class="nav-link active" aria-current="page" href="#Nosotros">
                             <h6 class="txt-nav">Nosotros</h6>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">
+                        <a class="nav-link active" aria-current="page" href="#Servicios">
                             <h6 class="txt-nav">Servicios</h6>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">
+                        <a class="nav-link active" aria-current="page" href="#Contacto">
                             <h6 class="txt-nav">Contacto</h6>
                         </a>
                     </li>
@@ -67,7 +68,7 @@
         </div>
     </div>
 
-    <div class="nstros">
+    <div class="nstros" id="Nosotros">
         <font face="times new roman" SIZE=8>
             <p>Nosotros</p>
         </font>
@@ -121,10 +122,10 @@
         </figure>
     </div>
 
-    <br><br><br>
+    <br>
 
     <!--Servicios-->
-    <div class="srvcs">
+    <div class="srvcs" id="Servicios">
         <font face="times new roman" SIZE=8>
             <p>Servicios</p>
         </font>
@@ -133,25 +134,101 @@
     <br><br>
 
     <div class="container-serv">
-        <img src="{% static '/img/matri1.png'%}" style="width:100%;">
-        <div class="content">
-            <h3>Matrimonio</h3>
-        </div>
+        <a href="#">
+            <img src="{% static '/img/matri1.png'%}" style="width:300px; height: 183px;">
+            <div class="content">
+                <h3>Matrimonio</h3>
+            </div>
+        </a>
     </div>
     <div class="container-serv">
-        <img src="{% static '/img/matri1.png'%}" style="width:100%;">
-        <div class="content">
-            <h3>Celebración</h3>
-        </div>
+        <a href="#">
+            <img src="{% static '/img/celebracion2.png'%}" style="width:300px; height: 183px;">
+            <div class="content">
+                <h3>Celebración</h3>
+            </div>
+        </a>
     </div>
     <div class="container-serv">
-        <img src="{% static '/img/coffeebreak.png'%}" style="width:100%;">
-        <div class="content">
-            <h3>Coffee Break</h3>
-        </div>
+        <a href="#">
+            <img src="{% static '/img/coffeebreak.png'%}" style="width:300px; height: 183px;">
+            <div class="content">
+                <h3>Coffee Break</h3>
+            </div>
+        </a>
+    </div>
+    <div class="container-serv">
+        <a href="#">
+            <img src="{% static '/img/tabla1.png'%}" style="width:300px; height: 183px;">
+            <div class="content">
+                <h3>Tablas</h3>
+            </div>
+        </a>
+    </div>
+    <div class="container-serv">
+        <a href="#">
+            <img src="{% static '/img/desayuno.png'%}" style="width:300px; height: 183px;">
+            <div class="content">
+                <h3>Desayunos</h3>
+            </div>
+        </a>
     </div>
 
-    <!---->
+    <br>
+
+    <!--Contacto-->
+    <div class="cntcto" id="Contacto">
+        <font face="times new roman" SIZE=8>
+            <p>Contacto</p>
+        </font>
+    </div>
+
+    <br><br>
+
+    <div class="contact-form">
+        <div class="contact-txt">
+            <font face="times new roman" SIZE=6>
+                <p>Si tienes alguna duda ¡Contactanos!</p>
+            </font>
+            <div class="contact-list">
+                <p>
+                    <i class="fa-solid fa-phone" style="color: #000000;"></i>
+                    <span>+56 942135704</span>
+                </p>
+                <p>
+                    <a href="https://www.instagram.com/sandoval.eventos_/" target="_blank" class="no-sub">
+                        <i class="fa-brands fa-instagram" style="color: #000000;"></i>
+                        <span>Instagram</span>
+                    </a>
+                </p>
+                <p>
+                    <a href="https://www.facebook.com/Sandoevent/" target="_blank" class="no-sub">
+                        <i class="fa-brands fa-facebook no-sub" style="color: #000000;"></i>
+                        <span>Facebook</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <form class="formulario-cntacto" action="/action_page.php">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Primer nombre..">
+
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" placeholder="Apellido paterno o materno..">
+
+            <label for="correo">Correo</label>
+            <input type="text" id="correo" name="correo" placeholder="Correo electronico..">
+
+            <label for="telefono">Telefono</label>
+            <input type="number" id="telefono" name="telefono" placeholder="Telefono celular..">
+
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Escribe aqui tu mensaje.."
+                style="height:150px"></textarea>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
 
 
 
