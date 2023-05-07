@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandoval Eventos</title>
+    <link rel="icon" href="{% static '/img/SandovalEventosLogo.png'%}">
+    <link rel="stylesheet" href="{% static '/css/inicio.css' %}">
+    <link rel="stylesheet" href="{% static '/css/matrimonio.css' %}">
+    <link rel="stylesheet" href="{% static '/css/login.css' %}">
+    <link rel="stylesheet" href="{% static '/css/collage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body style="background-color:rgb(250, 206, 252);">
+
+    <!--NavBar-->
+    <div class="parallax-matrimonio">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light"
+            style="background: rgba(0, 0, 0, .1); backdrop-filter: blur(10px); margin: auto;">
+            <div class="container-fluid">
+                <a class="navbar-brand">
+                    {% load static %}
+                    <img src="{% static '/img/SandovalEventosLetras.png'%}" alt="" width="230" height="40"
+                        class="d-inline-blockalign-text-top">
+                </a>
+                <ul class="nav navbar-nav justify-content-end">
+                    <li>
+                        <a href="{% url 'Inicio' %}">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#Nosotros">Nosotros</a>
+                    </li>
+                    <li>
+                        <a href="#Servicios">Servicios</a>
+                    </li>
+                    <li>
+                        <a href="#Contacto">Contacto</a>
+                    </li>
+                    <li class="sidebar-container">
+                        <a onclick="openSidebar()">
+                            <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
+                        </a>
+                        <div class="sidebar">
+                            <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar
+                                Sesion/Registrarse</a>
+                            <a href="#">Mis Cotizaciones</a>
+                            <a href="#">Cambiar Contraseña</a>
+                            <a href="#">Cerrar Sesion</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!--Modal Login-->
+        <div id="id01" class="modal">
+            <form class="modal-content-lg animate" action="/action_page.php" method="post">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
+                </div>
+                <div class="container">
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" placeholder="Ingrese su correo electronico" name="email" required>
+
+                    <label for="psw"><b>Contraseña</b></label>
+                    <input type="password" placeholder="Ingrese su contraseña" name="psw" required>
+
+                    <button class="button-lg" type="submit">Iniciar sesión</button>
+                </div>
+                <div class="container" style="background-color:rgb(250, 206, 252)">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                        class="cancelbtn button-lg">Registrarse</button>
+                    <span class="psw">Olvidaste tú <a href="#">contraseña?</a></span>
+                </div>
+            </form>
+        </div>
+
+        <br><br><br>
+
+        <div class="hero-text-matri">
+            <h1 style="font-size:100px">Matrimonio</h1>
+        </div>
+    </div>
+
+    <a id="scroll-to-top" onclick="scrollToTop()">
+        <i class="fa-solid fa-circle-up" style="font-size: 25px;"></i>
+    </a>
+
+    <ul class="opcMatri">
+        <li>
+            <a href="#Bar">Bar</a>
+        </li>
+        <li>
+            <a href="#Aperitivos">Aperitivos</a>
+        </li>
+        <li>
+            <a href="#Entrada">Entrada</a>
+        </li>
+        <li>
+            <a href="#PlatoPrincipal">Plato Principal</a>
+        </li>
+        <li>
+            <a href="#Postre">Postre</a>
+        </li>
+        <li>
+            <a href="#Personal">Personal</a>
+        </li>
+        <li>
+            <a href="#VyC">Vajilla y Cristaleria</a>
+        </li>
+        <li>
+            <a href="#Sonido">Dj (Sonido)</a>
+        </li>
+        <ul class="opcMatri-2">
+            <li>
+                <a href="#Iluminacion">Iluminacion</a>
+            </li>
+            <li>
+                <a href="#Decoracion">Decoracion</a>
+            </li>
+            <li>
+                <a href="#Fotografo">Fotografo</a>
+            </li>
+        </ul>
+    </ul>
+
+    <!--Bar-->
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="Bar">Bar</p>
+        </font>
+    </div>
+
+    
+
+
+
+
+
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="Aperitivos">Aperitivos</p>
+        </font>
+    </div>
+
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="Entrada">Entrada</p>
+        </font>
+    </div>
+
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="PlatoPrincipal">Plato Principal</p>
+        </font>
+    </div>
+
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="Postre">Postre</p>
+        </font>
+    </div>
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="Personal">Personal</p>
+        </font>
+    </div>
+
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="VyC">Vajilla y Cristaleria</p>
+        </font>
+    </div>
+
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="Sonido">Dj (Sonido)</p>
+        </font>
+    </div>
+
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="Iluminacion">Iluminacion</p>
+        </font>
+    </div>
+
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="Decoracion">Decoracion</p>
+        </font>
+    </div>
+
+    <div class="nstros">
+        <font face="times new roman" SIZE=8>
+            <p id="Fotografo">Fotografo</p>
+        </font>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br><br><br><br>
+
+    <script src="{% static '/js/btnSubir.js'%}"></script>
+    <script src="{% static '/js/header.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
