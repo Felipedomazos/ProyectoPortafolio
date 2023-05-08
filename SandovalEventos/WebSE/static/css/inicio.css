@@ -108,6 +108,7 @@ input::-webkit-inner-spin-button {
   margin-left: 50px;
   margin-top: 60px;
   height: 70px;
+  display: flex;
 }
 .nstros p {
   margin-left: 20px;
