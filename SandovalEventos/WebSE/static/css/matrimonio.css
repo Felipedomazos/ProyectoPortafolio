@@ -1,0 +1,222 @@
+#scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  text-decoration: none;
+  color: #981941;
+}
+
+#scroll-to-top:hover,
+#scroll-to-top:focus {
+  color: #f03f77;
+}
+
+.parallax-matrimonio {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/fondo-boda.png");
+  min-height: 450px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-text-matri {
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+ul.opcMatri {
+  margin-top: 30px;
+}
+
+ul.opcMatri li {
+  display: inline;
+  padding-right: 60px;
+}
+
+ul.opcMatri li a {
+  text-decoration: none;
+  color: #981941;
+  font-size: 20px;
+}
+
+ul.opcMatri li a:hover {
+  color: #f03f77;
+}
+
+ul.opcMatri-2 {
+  margin-top: 20px;
+  text-align: center;
+}
+
+ul.opcMatri-2 li {
+  display: inline;
+  padding-right: 65px;
+}
+
+ul.opcMatri-2 li a {
+  text-decoration: none;
+  color: #981941;
+  font-size: 20px;
+}
+
+/* Subtitulos */
+.subt {
+  border-left: 7px solid #981941;
+  margin-left: 90px;
+  margin-top: 30px;
+  height: 40px;
+}
+.subt p {
+  margin-left: 20px;
+  vertical-align: center;
+}
+.subChico {
+  margin-top: 30px;
+}
+.titulosMatri {
+  border-left: 15px solid #981941;
+  margin-left: 50px;
+  margin-top: 60px;
+  height: 70px;
+  display: flex;
+}
+.titulosMatri p {
+  margin-left: 20px;
+  vertical-align: center;
+}
+
+
+/* Bar */
+.opcBar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 90px;
+}
+
+.opcTragos {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  /* 8 checkboxes x 20px each */
+  overflow-y: auto;
+}
+
+.opcTragos label {
+  margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .opcTragos {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .opcTragos label {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    flex-basis: calc(20% - 16px);
+    /* 5 checkboxes per row */
+  }
+}
+
+.opcBarAdd {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.opcBarAdd label {
+  margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .opcBarAdd {
+    flex-wrap: wrap;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .opcBarAdd label {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    flex-basis: calc(25% - 5px);
+  }
+}
+
+
+/* Aperitivos */
+.aperitivos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.opcAprtvs {
+  display: flex;
+  flex-direction: column;
+  margin-left: 65px;
+}
+@media only screen and (min-width: 768px) {
+  .opcAprtvs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .opcAprtvs .opcLabel {
+    margin-right: 35px;
+    flex-basis: calc(20% - 16px);
+  }
+}
+.opcLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Times New Roman';
+  font-size: 20px;
+}
+.opcLabel p {
+  margin-left: 25px;
+  margin-top: 40px;
+  text-align: center;
+  vertical-align: center;
+  width: 200px;
+}
+.btnAgregar {
+  background-color: #981941;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 6px 20px;
+  text-align: center;
+  font-size: 16px;
+  margin: 40px 15px;
+  opacity: 1;
+  transition: 0.3s;
+}
+.btnAgregar:hover {
+  opacity: 0.6
+}
+.radioLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.radioLabel input[type="radio"] {
+  margin-left: 10px;
+  margin-top: 26px;
+  width: 20px;
+  height: 30px;
+}
