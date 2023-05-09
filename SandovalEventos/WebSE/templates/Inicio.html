@@ -66,7 +66,7 @@
                 </div>
                 <div class="container">
                     <label for="email"><b>Email</b></label>
-                    <input type="email" placeholder="Ingrese su correo electronico" name="email" required>
+                    <input type="email" placeholder="Ingrese su correo electrónico" name="email" required>
 
                     <label for="psw"><b>Contraseña</b></label>
                     <input type="password" placeholder="Ingrese su contraseña" name="psw" required>
@@ -76,11 +76,37 @@
                 <div class="container" style="background-color:rgb(250, 206, 252)">
                     <button type="button" onclick="document.getElementById('id01').style.display='none'"
                         class="cancelbtn button-lg">Registrarse</button>
+                    <span class="psw">Olvidaste tú contraseña?</span>
+                </div>
+            </form>
+        </div>
+        <!--Modal Register-->
+        <!-- Probando el register
+        https://www.youtube.com/watch?v=qYER6hAgJik (instalacion de firebase con login)
+        https://firebase.google.com/docs/auth/web/start?hl=es&authuser=0 documentación firebase-->
+        <div id="id02" class="modal">
+            <form class="modal-content-lg animate" action="/action_page.php" method="post">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
+                </div>
+                <div class="container">
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" placeholder="Ingrese su correo electrónico" name="email" required>
+
+                    <label for="psw"><b>Contraseña</b></label>
+                    <input type="password" placeholder="Ingrese su contraseña" name="psw" required>
+
+                    <button class="button-lg" type="submit">Iniciar sesión</button>
+                </div>
+                <div class="container" style="background-color:rgb(250, 206, 252)">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                        class="cancelbtn button-lg">Iniciar sesión</button>
                     <span class="psw">Olvidaste tú <a href="#">contraseña?</a></span>
                 </div>
             </form>
         </div>
-
+        <!--FIN REGISTER-->
         <br><br><br>
 
         <div class="hero-text">
@@ -283,5 +309,32 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
 </body>
+        <!--Firebase  -->
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+            import { getDatabase } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+            import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+              apiKey: "AIzaSyBCOwHuMl1QORfPGjgzbMzgF6iAxZKIKcQ",
+              authDomain: "sandovaleventos-7b318.firebaseapp.com",
+              databaseURL: "https://sandovaleventos-7b318-default-rtdb.firebaseio.com",
+              projectId: "sandovaleventos-7b318",
+              storageBucket: "sandovaleventos-7b318.appspot.com",
+              messagingSenderId: "262036975299",
+              appId: "1:262036975299:web:dff682c9dee665b7bbbc76"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const database = getDatabase(app);
+            const auth = getAuth();
+          </script>
+          <!-- Fin Firebase -->
 
 </html>
+
