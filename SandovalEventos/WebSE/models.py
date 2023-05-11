@@ -46,6 +46,7 @@ class Producto(models.Model):
     nombreProducto = models.CharField(max_length=30,verbose_name='Nombre del Producto')
     descProducto = models.CharField(max_length=60,verbose_name='Descripcion del Producto')
     precioProducto = models.IntegerField(verbose_name='Precio del Producto')
+    imgProducto = models.ImageField(upload_to="productos", null=True, verbose_name='Imagen del Producto')
 
     def __str__(self):
         return self.idProducto
@@ -58,7 +59,7 @@ class Evento(models.Model):
     idEvento = models.IntegerField(primary_key=True, verbose_name='ID del Evento')
     fechaEvento = models.DateField(verbose_name='Fecha del Evento')
     cantPersonas = models.IntegerField(verbose_name='Cantidad de Personas del Evento')
-
+    imgEvento = models.ImageField(upload_to="productos", null=True, verbose_name='Imagen del Evento')
     def __str__(self):
         return self.idEvento
 
@@ -73,3 +74,21 @@ class Cotizacion(models.Model):
         return self.nroCotizacion
 
 
+opciones_consultas = [
+    [0, "Consulta"],
+    [1, "Reclamo"],
+    [2, "Sugerencia"],
+    [3, "Felicitaciones"]
+]
+
+
+
+class Contacto(models.Model):
+    nombre= models.CharField(max_length=20)
+    apellido = models.CharField(max_length=30)
+    correo = models.EmailField()
+    tipo_consulta = models.IntegerField(choices=opciones_consultas)
+    mensaje = models.TextField()
+
+    def __str__(self):
+        return self.nombre

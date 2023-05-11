@@ -231,25 +231,15 @@
                 </p>
             </div>
         </div>
-        <form class="formulario-cntacto" action="/action_page.php">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Primer nombre..">
+        <form class="formulario-cntacto" action="" method="post">
 
-            <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" name="apellido" placeholder="Apellido paterno o materno..">
+            {% csrf_token %}
 
-            <label for="correo">Correo</label>
-            <input type="text" id="correo" name="correo" placeholder="Correo electronico..">
-
-            <label for="telefono">Telefono</label>
-            <input type="number" id="telefono" name="telefono" placeholder="Telefono celular..">
-
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" placeholder="Escribe aqui tu mensaje.."
-                style="height:150px"></textarea>
+            {{ form }}
 
             <input type="submit" value="Enviar">
         </form>
+        {{ mensaje }}
     </div>
 
 
