@@ -2,6 +2,8 @@ from django.urls import URLPattern, path
 from WebSE import views
 from .views import Inicio, Matrimonio, Celebracion, Tabla, Desayuno
 
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', Inicio, name="Inicio"),
@@ -10,3 +12,7 @@ urlpatterns = [
     path('tabla/', Tabla, name="tabla"),
     path('desayuno/', Desayuno, name="desayuno")
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
