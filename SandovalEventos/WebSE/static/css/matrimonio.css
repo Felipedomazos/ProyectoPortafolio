@@ -165,7 +165,7 @@ ul.opcMatri-2 li a {
 .opcAprtvs {
   display: flex;
   flex-direction: column;
-  margin-left: 65px;
+  margin-left: 90px;
 }
 @media only screen and (min-width: 768px) {
   .opcAprtvs {
@@ -189,7 +189,7 @@ ul.opcMatri-2 li a {
 }
 .opcLabel p {
   margin-left: 25px;
-  margin-top: 40px;
+  margin-top: 15px;
   text-align: center;
   vertical-align: center;
   width: 200px;
