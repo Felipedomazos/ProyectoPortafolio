@@ -22,7 +22,7 @@
     <!--NavBar-->
     <div class="parallax">
         <nav class="navbar navbar-expand-lg fixed-top navbar-light"
-            style="background: rgba(0, 0, 0, .1); backdrop-filter: blur(10px); margin: auto;">
+            style="background: rgba(0, 0, 0, .1); backdrop-filter: blur(10px);">
             <div class="container-fluid">
                 <a class="navbar-brand">
                     {% load static %}
@@ -133,13 +133,13 @@
         </figure>
         <figure class="figure-crsl">
             <div class="post-image">
-                <img class="img-crsl" src="https://unsplash.it/375/250/?random" />
+                <img class="img-crsl img-4" src="{% static '/img/Catering.jpg'%}" />
             </div>
             <div class="post-image">
-                <img class="img-crsl" src="https://unsplash.it/396/264/?random" />
+                <img class="img-crsl img-5" src="{% static '/img/coffeebreak2.jpg'%}" />
             </div>
             <div class="post-image">
-                <img class="img-crsl" src="https://unsplash.it/399/266/?random" />
+                <img class="img-crsl img-6" src="{% static '/img/tablas2.jpg'%}" />
             </div>
         </figure>
     </div>
@@ -164,7 +164,7 @@
         </a>
     </div>
     <div class="container-serv">
-        <a href="#">
+        <a href="{% url 'celebracion' %}">
             <img src="{% static '/img/celebracion2.png'%}" style="width:300px; height: 183px;">
             <div class="content">
                 <h3>Celebración</h3>
@@ -180,7 +180,7 @@
         </a>
     </div>
     <div class="container-serv">
-        <a href="#">
+        <a href="{% url 'tabla' %}">
             <img src="{% static '/img/tabla1.png'%}" style="width:300px; height: 183px;">
             <div class="content">
                 <h3>Tablas</h3>
@@ -188,7 +188,7 @@
         </a>
     </div>
     <div class="container-serv">
-        <a href="#">
+        <a href="{% url 'desayuno' %}">
             <img src="{% static '/img/desayuno.png'%}" style="width:300px; height: 183px;">
             <div class="content">
                 <h3>Desayunos</h3>
