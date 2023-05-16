@@ -1,4 +1,4 @@
-const precioUnitario = 700; // Precio unitario de cada producto
+const precioUnitario = 400; // Precio unitario de cada producto
 const cantidadInput = document.getElementById('cantidad');
 const precioInput = document.getElementById('precio');
 
