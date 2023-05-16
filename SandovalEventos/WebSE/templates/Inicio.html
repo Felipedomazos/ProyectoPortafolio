@@ -73,8 +73,7 @@
                     <button class="button-lg" type="submit">Iniciar sesión</button>
                 </div>
                 <div class="container" style="background-color:rgb(250, 206, 252)">
-                    <button type="button" onclick="document.getElementById('id02').style.display='none'"
-                        class="cancelbtn button-lg">Registrarse</button>
+                    <a href="{% url 'registro' %}"><button type="button" class="cancelbtn button-lg">Registrarse</button></a>
                     <span class="psw"> <a href="#">Olvidaste tú contraseña?</a></span>
                 </div>
             </form>

@@ -26,3 +26,5 @@ def Tabla(request):
     return render(request, 'Tablas.html')
 def Desayuno(request):
     return render(request, 'Desayunos.html')
+def Registro(request):
+    return render(request, 'Registro.html')
