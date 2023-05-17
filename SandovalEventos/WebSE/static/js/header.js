@@ -16,3 +16,9 @@ document.addEventListener('click', function (event) {
 
 var modal = document.getElementById('id01');
 
+
+function toggleMenu() {
+    var navbarOptions = document.getElementById("navbarOptions");
+    navbarOptions.classList.toggle("show");
+}
+

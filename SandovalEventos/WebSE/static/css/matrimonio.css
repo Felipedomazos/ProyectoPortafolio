@@ -14,7 +14,7 @@
 
 .parallax-matrimonio {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/fondo-boda.png");
-  min-height: 550px;
+  min-height: 700px;
   min-width: 700px;
   background-attachment: fixed;
   background-position: center;
@@ -33,12 +33,15 @@
 }
 
 ul.opcMatri {
-  margin-top: 30px;
+  margin-top: 4%;
+  padding: 0 32px 0 32px;
 }
 
 ul.opcMatri li {
   display: inline;
-  padding-right: 60px;
+  margin-bottom: 15px;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 ul.opcMatri li a {
@@ -79,7 +82,9 @@ ul.opcMatri-2 li a {
   vertical-align: center;
 }
 .subChico {
-  margin-top: 30px;
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Times New Roman';
 }
 .titulosMatri {
   border-left: 15px solid #981941;
@@ -240,4 +245,56 @@ ul.opcMatri-2 li a {
 }
 .modal-content-agregar label {
   margin-bottom: 1%;
+}
+
+.accordion {
+  background-color: rgb(250, 146, 255);
+  color: #981941;
+  cursor: pointer;
+  margin-top: 5%;
+  padding: 20px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 40px;
+  transition: 0.4s;
+}
+
+
+.accordionMini {
+  display: block;
+  background-color: rgb(250, 146, 255);
+  color: #981941;
+  cursor: pointer;
+  margin-left: 1%;
+  margin-top: 2%;
+  padding: 10px;
+  width: 20%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 30px;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+
+.active, .accordion:hover {
+  background-color: #981941;
+  color: white;
+}
+
+
+.active, .accordionMini:hover {
+  background-color: #981941;
+  color: white;
+}
+
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: rgb(250, 206, 252);;
+  overflow: hidden;
 }

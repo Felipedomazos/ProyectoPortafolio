@@ -20,7 +20,7 @@
 
     <!--NavBar-->
     <div class="parallax">
-        <nav class="navbar navbar-expand-md fixed-top"
+        <nav class="navbar navbar-dark navbar-expand-md fixed-top"
             style="background: rgba(0, 0, 0, .3); backdrop-filter: blur(10px);">
             <div class="container-fluid">
                 <a class="navbar-brand">
@@ -28,31 +28,37 @@
                     <img src="{% static '/img/SandovalEventosLetras.png'%}" alt="" width="230" height="40"
                         class="d-inline-blockalign-text-top">
                 </a>
-                <ul class="nav navbar-nav justify-content-end">
-                    <li>
-                        <a href="#">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="#Nosotros">Nosotros</a>
-                    </li>
-                    <li>
-                        <a href="#Servicios">Servicios</a>
-                    </li>
-                    <li>
-                        <a href="#Contacto">Contacto</a>
-                    </li>
-                    <li class="sidebar-container">
-                        <a onclick="openSidebar()">
-                            <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
-                        </a>
-                        <div class="sidebar">
-                            <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar Sesion/Registrarse</a>
-                            <a href="#">Mis Cotizaciones</a>
-                            <a href="#">Cambiar Contraseña</a>
-                            <a href="#">Cerrar Sesion</a>
-                        </div>
-                    </li>
-                </ul>
+                <button class="navbar-toggler" type="button" onclick="toggleMenu()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarOptions" class="collapse navbar-collapse justify-content-end">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="#Nosotros">Nosotros</a>
+                        </li>
+                        <li>
+                            <a href="#Servicios">Servicios</a>
+                        </li>
+                        <li>
+                            <a href="#Contacto">Contacto</a>
+                        </li>
+                        <li class="sidebar-container">
+                            <a onclick="openSidebar()">
+                                <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
+                            </a>
+                            <div class="sidebar">
+                                <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar
+                                    Sesion/Registrarse</a>
+                                <a href="#">Mis Cotizaciones</a>
+                                <a href="#">Cambiar Contraseña</a>
+                                <a href="#">Cerrar Sesion</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
 
@@ -73,12 +79,13 @@
                     <button class="button-lg" type="submit">Iniciar sesión</button>
                 </div>
                 <div class="container" style="background-color:rgb(250, 206, 252)">
-                    <a href="{% url 'registro' %}"><button type="button" class="cancelbtn button-lg">Registrarse</button></a>
+                    <a href="{% url 'registro' %}"><button type="button"
+                            class="cancelbtn button-lg">Registrarse</button></a>
                     <span class="psw"> <a href="#">Olvidaste tú contraseña?</a></span>
                 </div>
             </form>
         </div>
-        
+
         <br><br><br>
 
         <div class="hero-text">
@@ -86,7 +93,7 @@
             <p>Productora y Organizadora de Eventos</p>
             <button>Ver Servicios</button>
         </div>
-        
+
     </div>
 
     <a id="scroll-to-top" onclick="scrollToTop()">
@@ -276,7 +283,6 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
 </body>
-        
+
 
 </html>
-

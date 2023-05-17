@@ -1,5 +1,5 @@
 html, body {
-  min-width: 700px;
+  min-width: 715px;
 }
 .txt-blanco {
   color: rgb(0, 0, 0);
@@ -80,6 +80,24 @@ input::-webkit-inner-spin-button {
   right: 0; 
   z-index: 9999;
 }
+.navbar-collapse.collapse {
+  display: none !important;
+}
+.navbar-collapse.show {
+  display: flex !important;
+}
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+.navbar-toggler-icon {
+  color: white;
+  margin: 4px;
+  transition: background-color 0.3s;
+}
+
 
 
 
