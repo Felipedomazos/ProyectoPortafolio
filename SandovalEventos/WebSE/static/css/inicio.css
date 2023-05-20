@@ -55,9 +55,9 @@ input::-webkit-inner-spin-button {
 .sidebar {
   position: fixed;
   top: 0;
-  right: -350px;
+  right: -380px;
   width: 350px;
-  height: 1000px;
+  height: 100vh;
   padding: 20px;
   background-color: #981941;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
