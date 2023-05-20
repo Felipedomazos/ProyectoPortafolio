@@ -16,7 +16,8 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
-<body style="background-color:rgb(250, 206, 252);">
+
+<body style="background-color:rgb(244, 221, 245);">
 
     <!--NavBar-->
     <div class="parallax-matrimonio">
@@ -50,7 +51,7 @@
                                 <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
                             </a>
                             <div class="sidebar">
-                                <a onclick="document.getElementById('id01').style.display='block'">Iniciar
+                                <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar
                                     Sesion/Registrarse</a>
                                 <a href="#">Mis Cotizaciones</a>
                                 <a href="#">Cambiar Contraseña</a>
@@ -86,7 +87,7 @@
             </form>
         </div>
 
-        <!-- Modal Agregar -->
+        <!-- Modal Agregar Producto-->
         <div class="modal fade" id="mymodal" data-bs-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -115,6 +116,84 @@
                         <div>
                             <label for="">Precio:</label>
                             <input type="text" id="precio" readonly>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                            Cerrar
+                        </button>
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Agregar Servicio-->
+        <div class="modal fade" id="mymodalServ" data-bs-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modalAgregar-header">
+                        Title
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-content-agregar">
+                            <label for="select-cotizacion-serv">Agregar a:</label>
+                            <select id="select-cotizacion-serv" name="cotizacion">
+                                <option value="seleccionCotizacion">Seleccione una Cotización...</option>
+                                <option value="nueva-cotizacion">Nueva Cotización</option>
+                                <option value="cotizacion-1">Cotización 1</option>
+                                <option value="cotizacion-2">Cotización 2</option>
+                                <option value="cotizacion-3">Cotización 3</option>
+                            </select>
+                        </div>
+                        <div id="nombre-cotizacion-serv" style="display: none;">
+                            <label for="input-nombre-cotizacion-serv">Nombre Cotización:</label>
+                            <input type="text" id="input-nombre-cotizacion-serv">
+                        </div>
+                        <div>
+                            <label for="">Precio:</label>
+                            <input type="text" id="precioServ" readonly>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                            Cerrar
+                        </button>
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Agregar Tragos-->
+        <div class="modal fade" id="mymodalTrgs" data-bs-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modalTrgs-header">
+                        Title
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-content-agregar">
+                            <label for="select-cotizacion-trgs">Agregar a:</label>
+                            <select id="select-cotizacion-trgs" name="cotizacion">
+                                <option value="seleccionCotizacion">Seleccione una Cotización...</option>
+                                <option value="nueva-cotizacion">Nueva Cotización</option>
+                                <option value="cotizacion-1">Cotización 1</option>
+                                <option value="cotizacion-2">Cotización 2</option>
+                                <option value="cotizacion-3">Cotización 3</option>
+                            </select>
+                        </div>
+                        <div id="nombre-cotizacion-trgs" style="display: none;">
+                            <label for="input-nombre-cotizacion-trgs">Nombre Cotización:</label>
+                            <input type="text" id="input-nombre-cotizacion-trgs">
+                        </div>
+                        <div>
+                            <label for="">Precio:</label>
+                            <input type="text" id="precioTrgs" readonly>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -186,18 +265,26 @@
         <button class="accordionMini">Tragos</button>
         <div class="panel">
             <div class="opcBar">
-                <div class="opcTragos">
-                    <label><input type="checkbox" name="mojito" value="mojito"> Mojito</label>
-                    <label><input type="checkbox" name="margarita" value="margarita"> Margarita</label>
-                    <label><input type="checkbox" name="caipiriña" value="caipiriña"> Caipiriña</label>
-                    <label><input type="checkbox" name="cosmopolitan" value="cosmopolitan"> Cosmopolitan</label>
-                    <label><input type="checkbox" name="piscola" value="piscola"> Piscola</label>
-                    <label><input type="checkbox" name="oldfashioned" value="oldfashioned"> Old Fashioned</label>
-                    <label><input type="checkbox" name="sangria" value="sangria"> Sangria</label>
-                    <label><input type="checkbox" name="michelada" value="michelada"> Michelada</label>
-                    <label><input type="checkbox" name="daiquiri" value="daiquiri"> Daiquiri</label>
-                    <label><input type="checkbox" name="manhattan" value="manhattan"> Manhattan</label>
+                <div class="opcFiltros">
+                    <input class="bscrTrago" type="text" id="searchInput" placeholder="Buscar...">
+                    <label style="margin-bottom: 2%;" for="">Filtrar: </label>
+                    <label><input type="checkbox" name="ron" value="ron"> Ron</label>
+                    <label><input type="checkbox" name="whiskey" value="whiskey"> Whiskey</label>
+                    <label><input type="checkbox" name="tequila" value="tequila"> Tequila</label>
+                    <label><input type="checkbox" name="pisco" value="pisco"> Pisco</label>
+                    <label><input type="checkbox" name="cerveza" value="cerveza"> Cerveza</label>
                 </div>
+                <div class="opcTragos">
+                    <label><input type="checkbox" name="mojito" value="mojito ron"> Mojito</label>
+                    <label><input type="checkbox" name="margarita" value="margarita tequila"> Margarita</label>
+                    <label><input type="checkbox" name="piscola" value="piscola pisco"> Piscola</label>
+                    <label><input type="checkbox" name="oldfashioned" value="oldfashioned whiskey"> Old
+                        Fashioned</label>
+                    <label><input type="checkbox" name="michelada" value="michelada cerveza"> Michelada</label>
+                    <label><input type="checkbox" name="daiquiri" value="daiquiri ron"> Daiquiri</label>
+                    <label><input type="checkbox" name="manhattan" value="manhattan whiskey"> Manhattan</label>
+                </div>
+                <button class="btnAgregarTrago" id="botonSubmit" style="display: none;">Agregar</button>
             </div>
         </div>
         <button class="accordionMini">Bar Adicional</button>
@@ -206,17 +293,17 @@
                 <div class="opcAprtvs">
                     <div class="opcLabel">
                         <p>Beer Bar</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodalServ"
                             data-bs-heading="Beer Bar">Agregar</button>
                     </div>
                     <div class="opcLabel">
-                        <p>Limonade Bar</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Limonade Bar">Agregar</button>
+                        <p>Lemonade Bar</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodalServ"
+                            data-bs-heading="Lemonade Bar">Agregar</button>
                     </div>
                     <div class="opcLabel">
                         <p>Cocktail Bar</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodalServ"
                             data-bs-heading="Cocktail Bar">Agregar</button>
                     </div>
                 </div>
@@ -224,215 +311,200 @@
         </div>
     </div>
 
+    <!--Aperitivos-->
     <button id="Aperitivos" class="accordion">Aperitivos</button>
     <div class="panel">
-        <div class="subt">
-            <font face="times new roman" SIZE=6>
-                <p>Canapés</p>
-            </font>
-        </div>
-
-        <div class="aperitivos">
-            <div class="opcAprtvs">
-                <div class="opcLabel">
-                    <p>Camaron / Alcaparra</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Canape: Camaron/Alcaparra">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Palmito / Ciboulette</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Canape: Palmito/Ciboulette">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Choritos en Aceite / Queso Crema</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Canape: Choritos en Aceite/Queso Crema">Agregar</button>
+        <button class="accordionMini">Canapés</button>
+        <div class="panel">
+            <div class="aperitivos">
+                <div class="opcAprtvs">
+                    <div class="opcLabel">
+                        <p>Camaron / Alcaparra</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Canape: Camaron/Alcaparra">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Palmito / Ciboulette</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Canape: Palmito/Ciboulette">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Choritos en Aceite / Queso Crema</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Canape: Choritos en Aceite/Queso Crema">Agregar</button>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="subt">
-            <font face="times new roman" SIZE=6>
-                <p>Tapaditos</p>
-            </font>
-        </div>
-
-        <div class="aperitivos">
-            <div class="opcAprtvs">
-                <div class="opcLabel">
-                    <p>Ave / Pimenton</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Tapadito: Ave Pimenton">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Pavo / Lechuga hidroponica</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Tapadito: Pavo / Lechuga Hidroponica">Agregar</button>
+        <button class="accordionMini">Tapaditos</button>
+        <div class="panel">
+            <div class="aperitivos">
+                <div class="opcAprtvs">
+                    <div class="opcLabel">
+                        <p>Ave / Pimenton</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Tapadito: Ave Pimenton">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Pavo / Lechuga hidroponica</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Tapadito: Pavo / Lechuga Hidroponica">Agregar</button>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="subt">
-            <font face="times new roman" SIZE=6>
-                <p>Brochetas</p>
-            </font>
-        </div>
-
-        <div class="aperitivos">
-            <div class="opcAprtvs">
-                <div class="opcLabel">
-                    <p>Queso de cabra / Tomate Cherry / Albahaca</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Brocheta: Queso de cabra / Tomate Cherry / Albahaca">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Queso Matecoso / Tomate Cherry / Aceituna verde</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Brocheta: Queso Mantecoso / Tomate Cherry / Aceituna verde">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Champiñón / Zapallo italiano / Berenjena / Rúcula / Tomate Cherry</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Brocheta: Champiñón / Zapallo italiano / Berenjena / Rúcula / Tomate Cherry">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Uva verde / Mandarina / Uva morada / Kiwi</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Brocheta: Uva verde / Mandarina / Uva morada / Kiwi">Agregar</button>
+        <button class="accordionMini">Brochetas</button>
+        <div class="panel">
+            <div class="aperitivos">
+                <div class="opcAprtvs">
+                    <div class="opcLabel">
+                        <p>Queso de cabra / Tomate Cherry / Albahaca</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Brocheta: Queso de cabra / Tomate Cherry / Albahaca">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Queso Matecoso / Tomate Cherry / Aceituna verde</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Brocheta: Queso Mantecoso / Tomate Cherry / Aceituna verde">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Champiñón / Zapallo italiano / Berenjena / Rúcula / Tomate Cherry</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Brocheta: Champiñón / Zapallo italiano / Berenjena / Rúcula / Tomate Cherry">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Uva verde / Mandarina / Uva morada / Kiwi</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Brocheta: Uva verde / Mandarina / Uva morada / Kiwi">Agregar</button>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="subt">
-            <font face="times new roman" SIZE=6>
-                <p>Empanadas Cocktail</p>
-            </font>
-        </div>
-
-        <div class="aperitivos">
-            <div class="opcAprtvs">
-                <div class="opcLabel">
-                    <p>Queso</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Empanada Cocktail: Queso">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Pino</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Empanada Cocktail: Pino">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Jamon Queso</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Empanada Cocktail: Jamon Queso">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Mechada</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Empanada Cocktail: Mechada">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Camaron Queso</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Empanada Cocktail: Camaron Queso">Agregar</button>
-                </div>
-                <div class="opcLabel">
-                    <p>Champiñon Queso</p>
-                    <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                        data-bs-heading="Empanada Cocktail: Champiñon Queso">Agregar</button>
+        <button class="accordionMini">Empandas Cocktail</button>
+        <div class="panel">
+            <div class="aperitivos">
+                <div class="opcAprtvs">
+                    <div class="opcLabel">
+                        <p>Queso</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Empanada Cocktail: Queso">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Pino</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Empanada Cocktail: Pino">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Jamon Queso</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Empanada Cocktail: Jamon Queso">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Mechada</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Empanada Cocktail: Mechada">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Camaron Queso</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Empanada Cocktail: Camaron Queso">Agregar</button>
+                    </div>
+                    <div class="opcLabel">
+                        <p>Champiñon Queso</p>
+                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-bs-heading="Empanada Cocktail: Champiñon Queso">Agregar</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <button class="accordion">Entrada<p class="subChico">(Elija 2 opciones)</p></button>
+    <!--Entrada-->
+    <button id="Entrada" class="accordion">Entrada<p class="subChico">(Elija 2 opciones)</p></button>
     <div class="panel">
-        <div class="aperitivos">
-            <div class="opcAprtvs">
-                <div class="opcLabel">
-                    <label class="radioLabel" for="radioCausaPulpo">
-                        <p>Causa de Pulpo</p>
-                        <input type="radio" name="aperitivo" value="causa-de-pulpo" id="radioCausaPulpo">
-                    </label>
-                </div>
-                <div class="opcLabel">
-                    <label class="radioLabel" for="radioGazpacho">
-                        <p>Gazpacho de beterraga y verduras</p>
-                        <input type="radio" name="aperitivo" value="gazpacho-de-beterraga-y-verduras"
-                            id="radioGazpacho">
-                    </label>
-                </div>
-                <div class="opcLabel">
-                    <label class="radioLabel" for="radioTataki">
-                        <p>Tataki de Salmón</p>
-                        <input type="radio" name="aperitivo" value="tataki-de-salmon" id="radioTataki">
-                    </label>
-                </div>
-                <div class="opcLabel">
-                    <label class="radioLabel" for="radioAtunHummus">
-                        <p>Atún sellado y Hummus</p>
-                        <input type="radio" name="aperitivo" value="atun-sellado-y-hummus" id="radioAtunHummus">
-                    </label>
-                </div>
+        <div class="matrimonio">
+            <div class="opcComida">
+                <label class="opcLabelComida">Causa de Pulpo
+                    <input type="radio" checked="checked" value="Cumpleaños" name="tipoceleb">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="opcLabelComida">Gazpacho de beterraga y verduras
+                    <input type="radio" name="tipoceleb" value="Aniversario">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="opcLabelComida">Tataki de Salmón
+                    <input type="radio" name="tipoceleb" value="FiestaCorporativa">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="opcLabelComida">Atún sellado y Hummus
+                    <input type="radio" name="tipoceleb" value="FiestaCorporativa">
+                    <span class="checkmark"></span>
+                </label>
             </div>
         </div>
     </div>
 
-
-    <button class="accordion">Plato Principal<p class="subChico">(Elija 2 opciones)</p></button>
+    <!--Plato Principal-->
+    <button id="PlatoPrincipal" class="accordion">Plato Principal<p class="subChico">(Elija 2 opciones)</p></button>
     <div class="panel">
-        <div class="aperitivos">
-            <div class="opcAprtvs">
-                <div class="opcLabel">
-                    <label class="radioLabel" for="radioRisotto">
-                        <p>Risotto de pollo con curry</p>
-                        <input type="radio" name="aperitivo" value="risotto-de-pollo" id="radioRisotto">
-                    </label>
-                </div>
-                <div class="opcLabel">
-                    <label class="radioLabel" for="radioLangostino">
-                        <p>Langostinos al curry con arroz basmati</p>
-                        <input type="radio" name="aperitivo" value="langostino" id="radioLangostino">
-                    </label>
-                </div>
-                <div class="opcLabel">
-                    <label class="radioLabel" for="radioMagret">
-                        <p>Magret de pato con salsa de frambuesa y patatas daphinoise</p>
-                        <input type="radio" name="aperitivo" value="magret" id="radioMagret">
-                    </label>
-                </div>
+        <div class="matrimonio">
+            <div class="opcComida">
+                <label class="opcLabelComida">Risotto de pollo con curry
+                    <input type="radio" checked="checked" value="Cumpleaños" name="tipoceleb">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="opcLabelComida">Langostinos al curry con arroz basmati
+                    <input type="radio" name="tipoceleb" value="Aniversario">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="opcLabelComida">Magret de pato con salsa de frambuesa y patatas daphinoise
+                    <input type="radio" name="tipoceleb" value="FiestaCorporativa">
+                    <span class="checkmark"></span>
+                </label>
             </div>
         </div>
     </div>
 
-    <button class="accordion">Postre</button>
+    <!--Postre-->
+    <button id="Postre" class="accordion">Postre</button>
     <div class="panel">
 
     </div>
 
-    <button class="accordion">Personal</button>
+    <!--Personal-->
+    <button id="Personal" class="accordion">Personal</button>
     <div class="panel">
+
     </div>
 
-    <button class="accordion">Vajilla y Cristaleria</button>
+    <!--VyC-->
+    <button id="VyC" class="accordion">Vajilla y Cristaleria</button>
     <div class="panel">
+
     </div>
 
-    <button class="accordion">Dj (Sonido)</button>
+    <!--Sonido-->
+    <button id="Sonido" class="accordion">Dj (Sonido)</button>
     <div class="panel">
+
     </div>
 
-    <button class="accordion">Iluminación</button>
+    <!--Iluminacion-->
+    <button id="Iluminacion" class="accordion">Iluminación</button>
     <div class="panel">
+
     </div>
 
-    <button class="accordion">Decoración</button>
+    <!--Decoracion-->
+    <button id="Decoracion" class="accordion">Decoración</button>
     <div class="panel">
+
     </div>
 
-    <button class="accordion">Fotografo</button>
+    <!--Fotografo-->
+    <button id="Fotografo" class="accordion">Fotografo</button>
     <div class="panel">
+
     </div>
 
 
@@ -457,6 +529,7 @@
     <script src="{% static '/js/modalAgregar.js'%}"></script>
     <script src="{% static '/js/header.js'%}"></script>
     <script src="{% static '/js/acordion.js'%}"></script>
+    <script src="{% static '/js/busquedaTragos.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
