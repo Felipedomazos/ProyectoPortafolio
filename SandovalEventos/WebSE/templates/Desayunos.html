@@ -20,40 +20,45 @@
 
     <!--NavBar-->
     <div class="parallax-desayuno">
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light"
-            style="background: rgba(0, 0, 0, .1); backdrop-filter: blur(10px); margin: auto;">
+        <nav class="navbar navbar-dark navbar-expand-md fixed-top"
+            style="background: rgba(0, 0, 0, .3); backdrop-filter: blur(10px);">
             <div class="container-fluid">
                 <a class="navbar-brand">
                     {% load static %}
                     <img src="{% static '/img/SandovalEventosLetras.png'%}" alt="" width="230" height="40"
                         class="d-inline-blockalign-text-top">
                 </a>
-                <ul class="nav navbar-nav justify-content-end">
-                    <li>
-                        <a href="{% url 'Inicio' %}">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="#Nosotros">Nosotros</a>
-                    </li>
-                    <li>
-                        <a href="#Servicios">Servicios</a>
-                    </li>
-                    <li>
-                        <a href="#Contacto">Contacto</a>
-                    </li>
-                    <li class="sidebar-container">
-                        <a onclick="openSidebar()">
-                            <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
-                        </a>
-                        <div class="sidebar">
-                            <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar
-                                Sesion/Registrarse</a>
-                            <a href="#">Mis Cotizaciones</a>
-                            <a href="#">Cambiar Contraseña</a>
-                            <a href="#">Cerrar Sesion</a>
-                        </div>
-                    </li>
-                </ul>
+                <button class="navbar-toggler" type="button" onclick="toggleMenu()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarOptions" class="collapse navbar-collapse justify-content-end">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{% url 'Inicio' %}">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Inicio' %}">Nosotros</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Inicio' %}">Servicios</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Inicio' %}">Contacto</a>
+                        </li>
+                        <li class="sidebar-container">
+                            <a onclick="openSidebar()">
+                                <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
+                            </a>
+                            <div class="sidebar">
+                                <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar
+                                    Sesion/Registrarse</a>
+                                <a href="#">Mis Cotizaciones</a>
+                                <a href="#">Cambiar Contraseña</a>
+                                <a href="#">Cerrar Sesion</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
 
@@ -85,6 +90,7 @@
 
         <div class="hero-text-desayuno">
             <h1 style="font-size:100px">Desayunos</h1>
+            <p>Sorprende a esa persona que tanto cariño y amor le tienes con uno de nuestros deliciosos desayunos.</p>
         </div>
     </div>
 
@@ -92,6 +98,59 @@
         <i class="fa-solid fa-circle-up" style="font-size: 25px;"></i>
     </a>
 
+    <!--Cards Tablas-->
+    <div class="dsyno">
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Buscar por nombre" />
+        </div>
+
+        <div class="desayunos">
+            <figure class="cardDesayuno"><img src="{% static '/img/desayunoNiños.jpg'%}" alt="sample85" />
+                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
+                <figcaption>
+                    <h3>Desayuno Infantil<br>
+                    </h3>
+                    <hr>
+                    <div class="price">
+                        $49.990
+                    </div>
+                </figcaption><a href="#"></a>
+            </figure>
+            <figure class="cardDesayuno"><img src="{% static '/img/desayunoNormal.jpg'%}" alt="sample96" />
+                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
+                <figcaption>
+                    <h3>Desayuno Normal<br>
+                    </h3>
+                    <hr>
+                    <div class="price">
+                        $19.990
+                    </div>
+                </figcaption><a href="#"></a>
+            </figure>
+            <figure class="cardDesayuno"><img src="{% static '/img/tablaSalada.png'%}" alt="sample92" />
+                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
+                <figcaption>
+                    <h3>Desayuno de Amor<br>
+                    </h3>
+                    <hr>
+                    <div class="price">
+                        $29.990
+                    </div>
+                </figcaption><a href="#"></a>
+            </figure>
+            <figure class="cardDesayuno"><img src="{% static '/img/tablaDulce.png'%}" alt="sample92" />
+                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
+                <figcaption>
+                    <h3>Desayuno de Cumpleaños<br>
+                    </h3>
+                    <hr>
+                    <div class="price">
+                        $19.990
+                    </div>
+                </figcaption><a href="#"></a>
+            </figure>
+        </div>
+    </div>
 
 
 
