@@ -17,11 +17,13 @@ input::-webkit-inner-spin-button {
   display: none;
   text-decoration: none;
   color: #981941;
+  z-index: 900;
 }
 
 #scroll-to-top:hover,
 #scroll-to-top:focus {
   color: #f03f77;
+  z-index: 900;
 }
 
 
@@ -261,4 +263,150 @@ i.fa-brands.fa-facebook {
   text-decoration: none;
   color: black;
 }
+
+/* Carrito */
+.sidenavCarrito {
+  height: 100vh;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 100%; /* Cambia el valor a un número negativo */
+  background: rgb(40,5,18);
+  background: linear-gradient(140deg, rgba(40,5,18,1) 0%, rgba(150,10,79,1) 50%, rgba(221,95,135,1) 100%);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  text-align: center;
+}
+
+
+.sidenavCarrito a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+
+.sidenavCarrito p {
+  color: white;
+  font-size: 48px;
+  margin-left: 5%;
+  text-align: left;
+}
+
+
+.sidenavCarrito a:hover{
+  color: #f1f1f1;
+}
+
+
+.sidenavCarrito .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 48px;
+  margin-left: 50px;
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidenavCarrito {padding-top: 15px;}
+  .sidenavCarrito a {font-size: 18px;}
+}
+
+
+.lista-productos {
+  width: 75%;
+}
+
+
+.producto-carrito {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+
+.producto-carrito img {
+  width: 240px;
+  height: 130px;
+  object-fit: cover;
+  margin-right: 4%;
+  border-radius: 3%;
+  min-height: 130px;
+  min-width: 240px;
+}
+
+
+.producto-carrito .info {
+  flex-grow: 1;
+  width: 300px;
+}
+
+
+.producto-carrito h4 {
+  margin: 0;
+  vertical-align: top;
+  text-align: left;
+  margin-bottom: 5%;
+  font-size: 32px;
+  color: white;
+  width: 300px;
+}
+
+
+.producto-carrito p {
+  margin: 0;
+  font-size: 20px;
+  color: white;
+  width: 300px;
+}
+
+
+.eliminar-producto {
+  margin-right: 40%;
+  border-color: #f44336;
+  color: red;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 5%;
+}
+.eliminar-producto:hover {
+  background: #f44336;
+  color: white;
+}
+
+
+.contador {
+  margin-right: 4%;
+}
+
+
+.contador-btn {
+  border: none;
+  width: 25px;
+  border-radius: 10%;
+}
+
+
+.contador-btn:hover {
+  background-color: #9c9c9c;
+}
+
+
+.contador-valor {
+  color: white;
+  font-size: 22px;
+}
+
 
