@@ -45,14 +45,12 @@ class Producto(models.Model):
     idProducto = models.UUIDField(primary_key=True, default=uuid.uuid4, verbose_name='ID del Producto')
     nombreProducto = models.CharField(max_length=30,verbose_name='Nombre del Producto')
     descProducto = models.CharField(max_length=60,verbose_name='Descripcion del Producto')
+    cantPersonas = models.IntegerField(verbose_name='Cantidad de Personas Maximas para el producto', default='0')
     precioProducto = models.IntegerField(verbose_name='Precio del Producto')
-    imgProducto = models.ImageField(upload_to="productos", null=True, verbose_name='Imagen del Producto')
+    imagenProducto = models.ImageField(upload_to='img/', default='0')
 
     def __str__(self):
-        return self.idProducto
-
-
-
+        return self.nombreProducto
 
 
 class Evento(models.Model):

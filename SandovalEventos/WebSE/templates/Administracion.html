@@ -9,7 +9,7 @@
     <link rel="icon" href="{% static '/img/SandovalEventosLogo.png'%}">
     <link rel="stylesheet" href="{% static '/css/fontawesome/solid.css' %}">
     <link rel="stylesheet" href="{% static '/css/inicio.css' %}">
-    <link rel="stylesheet" href="{% static '/css/tablas.css' %}">
+    <link rel="stylesheet" href="{% static '/css/administracion.css' %}">
     <link rel="stylesheet" href="{% static '/css/login.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,7 +20,7 @@
 <body style="background-color:rgb(244, 221, 245);">
 
     <!--NavBar-->
-    <div class="parallax-tabla">
+    <div class="parallax-admin">
         <nav class="navbar navbar-dark navbar-expand-md fixed-top"
             style="background: rgba(0, 0, 0, .3); backdrop-filter: blur(10px);">
             <div class="container-fluid">
@@ -65,6 +65,7 @@
                                 <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar
                                     Sesion/Registrarse</a>
                                 <a href="#">Mis Cotizaciones</a>
+                                <a href="#">Administración</a>
                                 <a href="#">Cambiar Contraseña</a>
                                 <a href="#">Cerrar Sesion</a>
                             </div>
@@ -100,111 +101,52 @@
 
         <br><br><br>
 
-        <div class="hero-text-tabla">
-            <h1 style="font-size:100px">Tablas</h1>
-            <p>Pide tu tabla favorita dentro de la gran variedad de tablas que tenemos para ti</p>
+        <div class="hero-text-admin">
+            <h1 style="font-size:100px">Administracion</h1>
+        </div>
+
+        <a id="scroll-to-top" onclick="scrollToTop()">
+            <i class="fa-solid fa-circle-up" style="font-size: 25px;"></i>
+        </a>
+
+        <div class="btns">
+            <button class="custom-btn btn-3 tablink" onclick="openPage('Sercicios', this)">
+                <span>Sercicios</span>
+            </button>
+            <button class="custom-btn btn-3 tablink" onclick="openPage('Productos', this)">
+                <span>Productos</span>
+            </button>
         </div>
     </div>
 
-    <a id="scroll-to-top" onclick="scrollToTop()">
-        <i class="fa-solid fa-circle-up" style="font-size: 25px;"></i>
-    </a>
+    <div id="Sercicios" class="tabcontent">
+        <p>Mucho Gusto</p>
+    </div>
 
-    <div id="msj">Producto Agregado con exito!</div>
-
-    <!--Cards Tablas-->
-    <div class="table">
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Buscar por nombre" />
+    <div id="Productos" class="tabcontent">
+        <div class="rectangle-containerT">
+            <div class="text">Tablas</div>
+            <button class="buttonTable" onclick="toggleAdditionalButtonsT()"></button>
+            <div class="additional-buttons-t">
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-plus" style="color: #000000;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-pencil"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-trash"></i></button>
+                </a>
+            </div>
         </div>
-
-        <div class="tablas">
-            <figure id="tablaVegana" class="cardTabla"><img src="{% static '/img/tablaVegana.jpg'%}" alt="sample85" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Vegana<br>
-                        <h6>8 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $49.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaVegana')" href="#search"></a>
-            </figure>
-            <figure id="tablaGourmet" class="cardTabla"><img src="{% static '/img/tablaGourmet.jpg'%}" alt="sample96" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Gourmet<br>
-                        <h6>2 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $19.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaGourmet')" href="#search"></a>
-            </figure>
-            <figure id="tablaSalada" class="cardTabla"><img src="{% static '/img/tablaSalada.png'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Salada<br>
-                        <h6>4 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $29.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaSalada')" href="#search"></a>
-            </figure>
-            <figure id="tablaDulce" class="cardTabla"><img src="{% static '/img/tablaDulce.png'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Dulce<br>
-                        <h6>2 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $19.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaDulce')" href="#search"></a>
-            </figure>
-            <figure id="tablaMixta" class="cardTabla"><img src="{% static '/img/tablaMixta.png'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Mixta<br>
-                        <h6>4 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $29.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaMixta')" href="#search"></a>
-            </figure>
-            <figure id="tablaFrutal" class="cardTabla"><img src="{% static '/img/tablaFrutal.jpg'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Frutal<br>
-                        <h6>4 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $29.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaFrutal')" href="#search"></a>
-            </figure>
-            {% for dato in datos %}
-            <figure id="tabla" class="cardTabla"><img src="{% static '/img/tablaFrutal.jpg'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>{{ dato.nombreProducto }}<br>
-                        <h6>{{ dato.cantPersonas }}</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        ${{ dato.precioProducto }}
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaFrutal')" href="#search"></a>
-            </figure>
-            {% endfor %}
+        <div class="rectangle-containerD">
+            <div class="text">Desayunos</div>
+            <button class="buttonTable" onclick="toggleAdditionalButtonsD()"></button>
+            <div class="additional-buttons-d">
+                <button class="additional-button"><i class="fa-solid fa-plus" style="color: #000000;"></i></button>
+                <button class="additional-button"><i class="fa-solid fa-pencil"></i></button>
+                <button class="additional-button"><i class="fa-solid fa-trash"></i></button>
+            </div>
         </div>
     </div>
 
@@ -218,7 +160,7 @@
     <script src="{% static '/js/btnSubir.js'%}"></script>
     <script src="{% static '/js/carrito.js'%}"></script>
     <script src="{% static '/js/header.js'%}"></script>
-    <script src="{% static '/js/busquedaTabla.js'%}"></script>
+    <script src="{% static '/js/tipoAdmin.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>

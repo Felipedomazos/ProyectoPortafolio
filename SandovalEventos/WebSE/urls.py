@@ -1,6 +1,6 @@
 from django.urls import URLPattern, path
 from WebSE import views
-from .views import Inicio, Matrimonio, Celebracion, Tabla, Desayuno, Registro
+from .views import Inicio, Matrimonio, Celebracion, Tabla, Desayuno, Administracion, adminTablas, Registro
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -11,6 +11,8 @@ urlpatterns = [
     path('celebracion/', Celebracion, name="celebracion"),
     path('tabla/', Tabla, name="tabla"),
     path('desayuno/', Desayuno, name="desayuno"),
+    path('administracion/', Administracion, name="administracion"),
+    path('adminTablas/', adminTablas, name="adminTablas"),
     path('registro/', Registro, name="registro")
 ]
 
