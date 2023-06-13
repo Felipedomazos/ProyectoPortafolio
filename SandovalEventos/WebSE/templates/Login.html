@@ -17,34 +17,31 @@
 </head>
 
 <body style="background-color:rgb(250, 206, 252);">
-    <form class="modal-content-lg animate" method="post" action="{% url 'registro' %}">
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form class="modal-content-lg animate" method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <div class="imgcontainer"></div>
         <div class="container">
-            <label for="rut"><b>Rut</b></label>
-            <input type="number" placeholder="Ingrese su RUT (Sin puntos ni guion)" name="rut" required>
-
-            <label for="nombre"><b>Nombre</b></label>
-            <input type="text" placeholder="Ingrese su nombre" name="nombre" required>
-
-            <label for="apellido"><b>Apellido</b></label>
-            <input type="text" placeholder="Ingrese su apellido" name="apellido" required>
-
-            <label for="tel"><b>Celular de contacto</b></label>
-            <input type="tel" name="phone" placeholder="+56985274192" required value maxlength="12">
-            <br><br>
             <label for="email"><b>Email</b></label>
             <input type="email" placeholder="Ingrese su correo electrónico" name="email" required>
 
             <label for="password"><b>Contraseña:</b></label>
-            <input type="password" id="password" name="password" onkeyup="enableConfirmPassword()" required>
+            <input type="password" id="password" name="password" required>
 
-            <label for="confirm-password"><b>Confirmar Contraseña:</b></label>
-            <input type="password" id="confirm-password" name="confirm-password" disabled required>
-
-            <button class="button-lg" type="submit">Registrarse</button>
+            <button class="button-lg" type="submit">Iniciar sesión</button>
         </div>
     </form>
+    <a href="{% url 'registro' %}">
+        <button class="button-lg-reg">Registrarse</button>
+    </a>
 
 
     <a id="scroll-to-top" onclick="scrollToTop()">

@@ -61,41 +61,21 @@
                                 <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
                             </a>
                             <div class="sidebar">
-                                <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar
-                                    Sesion/Registrarse</a>
+                                {% if request.session.cliente_nombre %}
+                                <a href="#">{{ request.session.cliente_nombre }}</a>
                                 <a href="#">Mis Cotizaciones</a>
-                                <a href="#">Cambiar Contraseña</a>
-                                <a href="#">Cerrar Sesion</a>
+                                <a href="{% url 'administracion' %}">Administración</a>
+                                <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+                                {% else %}
+                                <a href="{% url 'login' %}">Iniciar Sesión</a>
+                                <a href="{% url 'registro' %}">Registrarse</a>
+                                {% endif %}
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <!--Modal Login-->
-        <div id="id01" class="modal">
-            <form class="modal-content-lg animate" action="/action_page.php" method="post">
-                <div class="imgcontainer">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                        title="Close Modal">&times;</span>
-                </div>
-                <div class="container">
-                    <label for="email"><b>Email</b></label>
-                    <input type="email" placeholder="Ingrese su correo electronico" name="email" required>
-
-                    <label for="psw"><b>Contraseña</b></label>
-                    <input type="password" placeholder="Ingrese su contraseña" name="psw" required>
-
-                    <button class="button-lg" type="submit">Iniciar sesión</button>
-                </div>
-                <div class="container" style="background-color:rgb(250, 206, 252)">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                        class="cancelbtn button-lg">Registrarse</button>
-                    <span class="psw">Olvidaste tú <a href="#">contraseña?</a></span>
-                </div>
-            </form>
-        </div>
 
         <br><br><br>
 
@@ -118,50 +98,20 @@
         </div>
 
         <div class="desayunos">
-            <figure id="desayunoInfantil" class="cardDesayuno"><img src="{% static '/img/desayunoNiños.jpg'%}" alt="sample85" />
+            {% for producto in objetos %}
+            <figure id="desayuno" class="cardDesayuno"><img src="{% static '/' %}{{ producto.imagenProducto }}"/>
                 <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
                 <figcaption>
-                    <h3>Desayuno Infantil<br>
+                    <h3>{{ producto.nombreProducto }}<br>
+                        <h6>{{ producto.cantPersonas }} personas</h6>
                     </h3>
                     <hr>
                     <div class="price">
-                        $49.990
+                        ${{ producto.precioProducto }}
                     </div>
-                </figcaption><a onclick="agregarAlCarrito('desayunoInfantil')" href="#search"></a>
+                </figcaption><a onclick="agregarAlCarrito('desayuno')" href="#search"></a>
             </figure>
-            <figure id="desayunoNormal" class="cardDesayuno"><img src="{% static '/img/desayunoNormal.jpg'%}" alt="sample96" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Desayuno Normal<br>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $19.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('desayunoNormal')" href="#search"></a>
-            </figure>
-            <figure id="desayunoAmor" class="cardDesayuno"><img src="{% static '/img/tablaSalada.png'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Desayuno de Amor<br>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $29.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('desayunoAmor')" href="#search"></a>
-            </figure>
-            <figure id="desayunoCumpleaños" class="cardDesayuno"><img src="{% static '/img/tablaDulce.png'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Desayuno de Cumpleaños<br>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $19.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('desayunoCumpleaños')" href="#search"></a>
-            </figure>
+            {% endfor %}
         </div>
     </div>
 
@@ -171,7 +121,6 @@
 
     <br><br><br><br>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static '/js/btnSubir.js'%}"></script>
     <script src="{% static '/js/busquedaDesayuno.js'%}"></script>
     <script src="{% static '/js/carrito.js'%}"></script>

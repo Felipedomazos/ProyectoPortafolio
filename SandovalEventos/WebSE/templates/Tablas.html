@@ -62,41 +62,21 @@
                                 <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
                             </a>
                             <div class="sidebar">
-                                <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar
-                                    Sesion/Registrarse</a>
-                                <a href="#">Mis Cotizaciones</a>
-                                <a href="#">Cambiar Contraseña</a>
-                                <a href="#">Cerrar Sesion</a>
+                                {% if request.session.cliente_nombre %}
+                                    <a href="#">{{ request.session.cliente_nombre }}</a>
+                                    <a href="#">Mis Cotizaciones</a>
+                                    <a href="{% url 'administracion' %}">Administración</a>
+                                    <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+                                {% else %}
+                                    <a href="{% url 'login' %}">Iniciar Sesión</a>
+                                    <a href="{% url 'registro' %}">Registrarse</a>
+                                {% endif %}
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <!--Modal Login-->
-        <div id="id01" class="modal">
-            <form class="modal-content-lg animate" action="/action_page.php" method="post">
-                <div class="imgcontainer">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                        title="Close Modal">&times;</span>
-                </div>
-                <div class="container">
-                    <label for="email"><b>Email</b></label>
-                    <input type="email" placeholder="Ingrese su correo electronico" name="email" required>
-
-                    <label for="psw"><b>Contraseña</b></label>
-                    <input type="password" placeholder="Ingrese su contraseña" name="psw" required>
-
-                    <button class="button-lg" type="submit">Iniciar sesión</button>
-                </div>
-                <div class="container" style="background-color:rgb(250, 206, 252)">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                        class="cancelbtn button-lg">Registrarse</button>
-                    <span class="psw">Olvidaste tú <a href="#">contraseña?</a></span>
-                </div>
-            </form>
-        </div>
 
         <br><br><br>
 
@@ -119,90 +99,18 @@
         </div>
 
         <div class="tablas">
-            <figure id="tablaVegana" class="cardTabla"><img src="{% static '/img/tablaVegana.jpg'%}" alt="sample85" />
+            {% for producto in objetos %}
+            <figure id="tabla" class="cardTabla"><img src="{% static '/' %}{{ producto.imagenProducto }}"/>
                 <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
                 <figcaption>
-                    <h3>Tabla Vegana<br>
-                        <h6>8 personas</h6>
+                    <h3>{{ producto.nombreProducto }}<br>
+                        <h6>{{ producto.cantPersonas }} personas</h6>
                     </h3>
                     <hr>
                     <div class="price">
-                        $49.990
+                        ${{ producto.precioProducto }}
                     </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaVegana')" href="#search"></a>
-            </figure>
-            <figure id="tablaGourmet" class="cardTabla"><img src="{% static '/img/tablaGourmet.jpg'%}" alt="sample96" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Gourmet<br>
-                        <h6>2 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $19.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaGourmet')" href="#search"></a>
-            </figure>
-            <figure id="tablaSalada" class="cardTabla"><img src="{% static '/img/tablaSalada.png'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Salada<br>
-                        <h6>4 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $29.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaSalada')" href="#search"></a>
-            </figure>
-            <figure id="tablaDulce" class="cardTabla"><img src="{% static '/img/tablaDulce.png'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Dulce<br>
-                        <h6>2 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $19.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaDulce')" href="#search"></a>
-            </figure>
-            <figure id="tablaMixta" class="cardTabla"><img src="{% static '/img/tablaMixta.png'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Mixta<br>
-                        <h6>4 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $29.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaMixta')" href="#search"></a>
-            </figure>
-            <figure id="tablaFrutal" class="cardTabla"><img src="{% static '/img/tablaFrutal.jpg'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>Tabla Frutal<br>
-                        <h6>4 personas</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        $29.990
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaFrutal')" href="#search"></a>
-            </figure>
-            {% for dato in datos %}
-            <figure id="tabla" class="cardTabla"><img src="{% static '/img/tablaFrutal.jpg'%}" alt="sample92" />
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
-                <figcaption>
-                    <h3>{{ dato.nombreProducto }}<br>
-                        <h6>{{ dato.cantPersonas }}</h6>
-                    </h3>
-                    <hr>
-                    <div class="price">
-                        ${{ dato.precioProducto }}
-                    </div>
-                </figcaption><a onclick="agregarAlCarrito('tablaFrutal')" href="#search"></a>
+                </figcaption><a onclick="agregarAlCarrito('tabla')" href="#search"></a>
             </figure>
             {% endfor %}
         </div>

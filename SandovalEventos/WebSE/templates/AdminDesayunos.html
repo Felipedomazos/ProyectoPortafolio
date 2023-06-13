@@ -64,7 +64,6 @@
                             <a href="#">{{ request.session.cliente_nombre }}</a>
                             <a href="#">Mis Cotizaciones</a>
                             <a href="{% url 'administracion' %}">Administración</a>
-                            <a href="#">Cambiar Contraseña</a>
                             <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
                         {% else %}
                             <a href="{% url 'login' %}">Iniciar Sesión</a>
@@ -84,17 +83,17 @@
     </a>
 
     <div class="topnav">
-        <a href="#" class="active tablink" onclick="openPage('Agregar', this)" id="defaultOpen">Agregar</a>
+        <a href="#" class="active tablink" onclick="openPage('Agregar', this)">Agregar</a>
         <a href="#" class="tablink" onclick="openPage('Modificar', this)">Modificar</a>
         <a href="#" class="tablink" onclick="openPage('Eliminar', this)">Eliminar</a>
     </div>
 
     <div id="mensaje-exito" class="success-message" style="display: none;">
-        ¡Éxito! La tabla se ha agregado correctamente.
+        ¡Éxito! El desayuno se ha agregado correctamente.
     </div>
 
     <div id="Agregar" class="tabcontent">
-        <p class="texto">Nueva Tabla</p>
+        <p class="texto">Nuevo Desayuno</p>
         <form action="{% url 'adminTablas' %}" method="POST" enctype="multipart/form-data" onsubmit="mostrarMensajeExito()"> 
             {% csrf_token %}
             <label for="nombre">Nombre:</label>
@@ -122,7 +121,7 @@
     </div>
 
     <div id="Modificar" class="tabcontent">
-        <p class="texto">Editar Tabla</p>
+        <p class="texto">Editar Desayuno</p>
         <div class="tablasEdit">
             <div class="tableEdit">
                 {% for producto in objetos %}
@@ -168,7 +167,7 @@
     </div>
 
     <div id="Eliminar" class="tabcontent">
-        <p class="texto">Eliminar Tabla</p>
+        <p class="texto">Eliminar Desayuno</p>
         <div class="tablasTable">
             {% for producto in objetos %}
             <div class="elimTabla">
@@ -176,7 +175,7 @@
                     <h6>{{ producto.idProducto }}</h6>
                     <h4>{{ producto.nombreProducto }}</h4>
                 </div>
-                <form action="{% url 'adminTablas' producto.idProducto %}" method="post">
+                <form action="{% url 'adminDesayunos' producto.idProducto %}" method="post">
                     {% csrf_token %}
                     <input type="submit" value="Eliminar">
                 </form>

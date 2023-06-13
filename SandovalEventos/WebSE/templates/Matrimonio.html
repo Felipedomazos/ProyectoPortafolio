@@ -62,41 +62,21 @@
                                 <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
                             </a>
                             <div class="sidebar">
-                                <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar
-                                    Sesion/Registrarse</a>
-                                <a href="#">Mis Cotizaciones</a>
-                                <a href="#">Cambiar Contraseña</a>
-                                <a href="#">Cerrar Sesion</a>
+                                {% if request.session.cliente_nombre %}
+                                <a href="{% url 'cuenta' %}">{{ request.session.cliente_nombre }}</a>
+                                <a href="{% url 'cotizaciones' %}">Mis Cotizaciones</a>
+                                <a href="{% url 'administracion' %}">Administración</a>
+                                <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+                                {% else %}
+                                <a href="{% url 'login' %}">Iniciar Sesión</a>
+                                <a href="{% url 'registro' %}">Registrarse</a>
+                                {% endif %}
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <!--Modal Login-->
-        <div id="id01" class="modal">
-            <form class="modal-content-lg animate" action="/action_page.php" method="post">
-                <div class="imgcontainer">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                        title="Close Modal">&times;</span>
-                </div>
-                <div class="container">
-                    <label for="email"><b>Email</b></label>
-                    <input type="email" placeholder="Ingrese su correo electronico" name="email" required>
-
-                    <label for="psw"><b>Contraseña</b></label>
-                    <input type="password" placeholder="Ingrese su contraseña" name="psw" required>
-
-                    <button class="button-lg" type="submit">Iniciar sesión</button>
-                </div>
-                <div class="container" style="background-color:rgb(250, 206, 252)">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                        class="cancelbtn button-lg">Registrarse</button>
-                    <span class="psw">Olvidaste tú <a href="#">contraseña?</a></span>
-                </div>
-            </form>
-        </div>
 
         <!-- Modal Agregar Producto-->
         <div class="modal fade" id="mymodal" data-bs-backdrop="static">
@@ -111,9 +91,9 @@
                             <select id="select-cotizacion" name="cotizacion">
                                 <option value="seleccionCotizacion">Seleccione una Cotización...</option>
                                 <option value="nueva-cotizacion">Nueva Cotización</option>
-                                <option value="cotizacion-1">Cotización 1</option>
-                                <option value="cotizacion-2">Cotización 2</option>
-                                <option value="cotizacion-3">Cotización 3</option>
+                                {% for cotizacion in cotizaciones %}
+                                <option value="{{ cotizacion.nroCotizacion }}">{{ cotizacion.nombreCotizacion }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div id="nombre-cotizacion" style="display: none;">
@@ -154,9 +134,9 @@
                             <select id="select-cotizacion-serv" name="cotizacion">
                                 <option value="seleccionCotizacion">Seleccione una Cotización...</option>
                                 <option value="nueva-cotizacion">Nueva Cotización</option>
-                                <option value="cotizacion-1">Cotización 1</option>
-                                <option value="cotizacion-2">Cotización 2</option>
-                                <option value="cotizacion-3">Cotización 3</option>
+                                {% for cotizacion in cotizaciones %}
+                                <option value="{{ cotizacion.nroCotizacion }}">{{ cotizacion.nombreCotizacion }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div id="nombre-cotizacion-serv" style="display: none;">
@@ -193,9 +173,9 @@
                             <select id="select-cotizacion-trgs" name="cotizacion">
                                 <option value="seleccionCotizacion">Seleccione una Cotización...</option>
                                 <option value="nueva-cotizacion">Nueva Cotización</option>
-                                <option value="cotizacion-1">Cotización 1</option>
-                                <option value="cotizacion-2">Cotización 2</option>
-                                <option value="cotizacion-3">Cotización 3</option>
+                                {% for cotizacion in cotizaciones %}
+                                <option value="{{ cotizacion.nroCotizacion }}">{{ cotizacion.nombreCotizacion }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div id="nombre-cotizacion-trgs" style="display: none;">

@@ -1,0 +1,118 @@
+.textyopc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 7% 5% 10% 5%;
+}
+
+.opcCotizacion a{
+    text-decoration: none;
+    margin-right: 40px;
+    font-size: 30px;
+}
+
+.opcCotizacion i {
+    color: #981941;
+}
+
+.opcCotizacion i:hover {
+    color: #e1326a;
+}
+
+.textyopc p {
+    font-size: 40px;
+}
+
+.cotizaciones a {
+    text-decoration: none;
+}
+
+.cotizacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2% 5% 2% 5%;
+    height: 150px;
+    background-color: #981941;
+}
+
+.cotizacion p {
+    margin-left: 5%;
+    font-size: 35px;
+    color: white;
+}
+
+.cotizacion a {
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.cotizacion i {
+    color: white;
+    font-size: 30px;
+    margin-right: 40px;
+}
+
+.modalCoti {
+    display: none; /* Ocultar por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+  }
+  
+  .modal-content-coti {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+  }
+  .modal-content-coti h2{
+    margin-bottom: 10%;
+  }
+
+  .modal-content-coti button {
+    border: none;
+    width: 40%;
+    color: white;
+    background-color: #981941;
+    margin: 5% auto auto 30%;
+    padding: 8px;
+  }
+  .modal-content-coti button:hover {
+    color: white;
+    background-color: #e1326a;
+  }
+  
+  /* Estilo para cerrar el modal */
+  .closeCoti {
+    color: #000000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .messages {
+    font-size: 25px;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease;
+    background-color: #890a32;
+    color: #ffffff;
+}

@@ -16,9 +16,25 @@ input[type=email], input[type=password] {
     border: none;
     cursor: pointer;
     width: 100%;
+    border-radius: 15px;
   }
   
   .button-lg:hover {
+    opacity: 0.8;
+  }
+
+  .button-lg-reg {
+    background-color: #981941;
+    color: white;
+    padding: 14px 20px;
+    margin: 0 0 0 35%;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 15px;
+  }
+  
+  .button-lg-reg:hover {
     opacity: 0.8;
   }
   
@@ -57,7 +73,7 @@ input[type=email], input[type=password] {
   }
   .modal-content-lg {
     background-color: rgb(250, 206, 252);
-    margin: 2% auto 15% auto; 
+    margin: 2% auto 1% auto; 
     border: 1px solid #888;
     width: 40%;
     height: 60%;
@@ -104,4 +120,11 @@ input[type=email], input[type=password] {
     .cancelbtn {
        width: 100%;
     }
+  }
+  .messages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    font-size: 30px;
   }

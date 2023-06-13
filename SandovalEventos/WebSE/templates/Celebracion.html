@@ -61,11 +61,16 @@
                                 <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
                             </a>
                             <div class="sidebar">
-                                <a onclick="document.getElementById('id01').style.display='block'" href="#">Iniciar
-                                    Sesion/Registrarse</a>
-                                <a href="#">Mis Cotizaciones</a>
-                                <a href="#">Cambiar Contraseña</a>
-                                <a href="#">Cerrar Sesion</a>
+                                {% if request.session.cliente_nombre %}
+                                    <a href="#">{{ request.session.cliente_nombre }}</a>
+                                    <a href="#">Mis Cotizaciones</a>
+                                    <a href="{% url 'administracion' %}">Administración</a>
+                                    <a href="#">Cambiar Contraseña</a>
+                                    <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+                                {% else %}
+                                    <a href="{% url 'login' %}">Iniciar Sesión</a>
+                                    <a href="{% url 'registro' %}">Registrarse</a>
+                                {% endif %}
                             </div>
                         </li>
                     </ul>
