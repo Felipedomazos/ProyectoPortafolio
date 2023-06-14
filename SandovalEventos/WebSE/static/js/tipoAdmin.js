@@ -25,6 +25,26 @@ function toggleAdditionalButtonsD() {
     const additionalButtonsD = document.querySelector('.additional-buttons-d');
     additionalButtonsD.style.display = additionalButtonsD.style.display === 'block' ? 'none' : 'block';
 }
+function toggleAdditionalButtonsMatri() {
+    const additionalButtonsMatri = document.querySelector('.additional-buttons-matri');
+    additionalButtonsMatri.style.display = additionalButtonsMatri.style.display === 'block' ? 'none' : 'block';
+}
+function toggleAdditionalButtonsCumple() {
+    const additionalButtonsCumple = document.querySelector('.additional-buttons-cumple');
+    additionalButtonsCumple.style.display = additionalButtonsCumple.style.display === 'block' ? 'none' : 'block';
+}
+function toggleAdditionalButtonsAniv() {
+    const additionalButtonsAniv = document.querySelector('.additional-buttons-aniv');
+    additionalButtonsAniv.style.display = additionalButtonsAniv.style.display === 'block' ? 'none' : 'block';
+}
+function toggleAdditionalButtonsFiesta() {
+    const additionalButtonsFiesta = document.querySelector('.additional-buttons-fiesta');
+    additionalButtonsFiesta.style.display = additionalButtonsFiesta.style.display === 'block' ? 'none' : 'block';
+}
+function toggleAdditionalButtonsCoffee() {
+    const additionalButtonsCoffee = document.querySelector('.additional-buttons-coffee');
+    additionalButtonsCoffee.style.display = additionalButtonsCoffee.style.display === 'block' ? 'none' : 'block';
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     var links = document.querySelectorAll('.topnav a');

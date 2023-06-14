@@ -63,10 +63,9 @@
                             </a>
                             <div class="sidebar">
                                 {% if request.session.cliente_nombre %}
-                                    <a href="#">{{ request.session.cliente_nombre }}</a>
-                                    <a href="#">Mis Cotizaciones</a>
-                                    <a href="{% url 'administracion' %}">Administración</a>
-                                    <a href="#">Cambiar Contraseña</a>
+                                    <a href="{% url 'cuenta' %}">{{ request.session.cliente_nombre }}</a>
+                                    <a href="{% url 'cotizaciones' %}">Mis Cotizaciones</a>
+                                    <a href="#">Administración</a>
                                     <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
                                 {% else %}
                                     <a href="{% url 'login' %}">Iniciar Sesión</a>
@@ -106,7 +105,91 @@
     </div>
 
     <div id="Sercicios" class="tabcontent">
-        <p>Mucho Gusto</p>
+        <div class="rectangle-container-matri">
+            <div class="text">Matrimonio</div>
+            <button class="buttonTable" onclick="toggleAdditionalButtonsMatri()"><i class="fa-solid fa-arrow-left"
+                    style="color: #ffffff; font-size: 20px;"></i></button>
+            <div class="additional-buttons-matri">
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-plus" style="color: #ffffff;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-pencil"
+                            style="color: #ffffff;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                </a>
+            </div>
+        </div>
+        <div class="rectangle-container-cumple">
+            <div class="text">Cumpleaños</div>
+            <button class="buttonTable" onclick="toggleAdditionalButtonsCumple()"><i class="fa-solid fa-arrow-left"
+                    style="color: #ffffff; font-size: 20px;"></i></button>
+            <div class="additional-buttons-cumple">
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-plus" style="color: #ffffff;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-pencil"
+                            style="color: #ffffff;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                </a>
+            </div>
+        </div>
+        <div class="rectangle-container-aniv">
+            <div class="text">Aniversario</div>
+            <button class="buttonTable" onclick="toggleAdditionalButtonsAniv()"><i class="fa-solid fa-arrow-left"
+                    style="color: #ffffff; font-size: 20px;"></i></button>
+            <div class="additional-buttons-aniv">
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-plus" style="color: #ffffff;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-pencil"
+                            style="color: #ffffff;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                </a>
+            </div>
+        </div>
+        <div class="rectangle-container-fiesta">
+            <div class="text">Fiesta Corporativa</div>
+            <button class="buttonTable" onclick="toggleAdditionalButtonsFiesta()"><i class="fa-solid fa-arrow-left"
+                    style="color: #ffffff; font-size: 20px;"></i></button>
+            <div class="additional-buttons-fiesta">
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-plus" style="color: #ffffff;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-pencil"
+                            style="color: #ffffff;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                </a>
+            </div>
+        </div>
+        <div class="rectangle-container-coffeeb">
+            <div class="text">Coffee Break</div>
+            <button class="buttonTable" onclick="toggleAdditionalButtonsCoffee()"><i class="fa-solid fa-arrow-left"
+                    style="color: #ffffff; font-size: 20px;"></i></button>
+            <div class="additional-buttons-coffee">
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-plus" style="color: #ffffff;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-pencil"
+                            style="color: #ffffff;"></i></button>
+                </a>
+                <a href="{% url 'adminTablas' %}">
+                    <button class="additional-button"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                </a>
+            </div>
+        </div>
     </div>
 
     <div id="Productos" class="tabcontent">

@@ -171,6 +171,56 @@
   background-position: center;
   overflow: hidden;
 }
+.rectangle-container-matri {
+  position: relative;
+  width: auto;
+  height: 200px;
+  margin: 20px auto;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/fondoboda2.jpg");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.rectangle-container-cumple {
+  position: relative;
+  width: auto;
+  height: 200px;
+  margin: 20px auto;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/celebracion2.png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.rectangle-container-aniv {
+  position: relative;
+  width: auto;
+  height: 200px;
+  margin: 20px auto;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/celebracion1.png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.rectangle-container-fiesta {
+  position: relative;
+  width: auto;
+  height: 200px;
+  margin: 20px auto;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/Catering.JPG");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.rectangle-container-coffeeb {
+  position: relative;
+  width: auto;
+  height: 200px;
+  margin: 20px auto;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/coffeebreak.png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
 
 .text {
   position: absolute;
@@ -196,6 +246,41 @@
 }
 
 .additional-buttons-t {
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+.additional-buttons-matri {
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+.additional-buttons-cumple {
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+.additional-buttons-aniv {
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+.additional-buttons-fiesta {
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+.additional-buttons-coffee {
   position: absolute;
   right: 100px;
   top: 50%;

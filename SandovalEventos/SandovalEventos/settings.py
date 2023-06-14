@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'WebSE.apps.WebseConfig',
     'colorfield',
+    'django.contrib.humanize',
 ]
 
 X_FRAME_OPTIONS='SAMEORIGIN'

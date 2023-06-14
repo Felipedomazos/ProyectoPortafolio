@@ -48,6 +48,17 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nombreCliente
 
+class Tarjeta(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='tarjetas')
+    nombreTitular = models.CharField(max_length=50, verbose_name='Nombre del Titular')
+    numeroTarjeta = models.CharField(max_length=16, verbose_name='Número de la Tarjeta')
+    fechaExpiracion = models.CharField(max_length=7, verbose_name='Fecha de Expiración (MM/YY)')
+    codigoSeguridad = models.CharField(max_length=4, verbose_name='Código de Seguridad')
+    rutTitular = models.IntegerField(verbose_name='RUT del Titular')
+
+    def __str__(self):
+        return self.nombreTitular
+
 
 class Pedido(models.Model):
     idPedido = models.UUIDField(primary_key=True, default=uuid.uuid4, verbose_name='ID del Pedido')

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static humanize %}
 <html lang="en">
 
 <head>
@@ -91,14 +91,15 @@
             </a>
             <h1>{{ cliente.nombreCliente }} {{ cliente.apellidoCliente }}</h1>
         </div>
-        <button class="tablinks" onclick="openCity(event, 'Datos')" id="defaultOpen"><i class="fa-solid fa-user" style="margin-left: 1.5%;"></i>Mis
+        <button class="tablinks" onclick="openCity(event, 'Datos')" id="defaultOpen"><i class="fa-solid fa-user"
+                style="margin-left: 1.5%;"></i>Mis
             Datos</button>
-        <button class="tablinks" onclick="openCity(event, 'Seguridad')"><i
-                class="fa-solid fa-lock" style="margin-left: 1.5%;"></i>Seguridad</button>
-        <button class="tablinks" onclick="openCity(event, 'Tarjetas')"><i
-                class="fa-solid fa-credit-card" style="margin-left: 1%;"></i>Tarjetas</button>
-        <button class="tablinks" onclick="openCity(event, 'Direcciones')"><i
-                class="fa-solid fa-location-dot" style="margin-left: 2%;"></i>Direcciones</button>
+        <button class="tablinks" onclick="openCity(event, 'Seguridad')"><i class="fa-solid fa-lock"
+                style="margin-left: 1.5%;"></i>Seguridad</button>
+        <button class="tablinks" onclick="openCity(event, 'Tarjetas')"><i class="fa-solid fa-credit-card"
+                style="margin-left: 1%;"></i>Tarjetas</button>
+        <button class="tablinks" onclick="openCity(event, 'Direcciones')"><i class="fa-solid fa-location-dot"
+                style="margin-left: 2%;"></i>Direcciones</button>
     </div>
 
     <div id="Datos" class="tabcontentCuenta">
@@ -106,26 +107,34 @@
             {% csrf_token %}
             <div style="margin-top: 5%;">
                 <label for="rut">Rut:</label>
-                <input type="text" name="rut" id="rut" placeholder="Rut" value="{{ cliente.rutCliente }}" style="width: 50%;">
+                <input type="text" name="rut" id="rut" placeholder="Rut" value="{{ cliente.rutCliente }}"
+                    style="width: 50%;" disabled>
                 <br>
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{ cliente.nombreCliente }}" style="width: 50%;">
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{ cliente.nombreCliente }}"
+                    style="width: 50%;">
                 <br>
                 <label for="apellido">Apellido:</label>
-                <input type="text" name="apellido" id="apellido" placeholder="Apellido" value="{{ cliente.apellidoCliente }}" style="width: 50%;">
+                <input type="text" name="apellido" id="apellido" placeholder="Apellido"
+                    value="{{ cliente.apellidoCliente }}" style="width: 50%;">
                 <br>
                 <label for="correo">Correo Electrónico:</label>
-                <input type="text" name="correo" id="correo" placeholder="Correo" value="{{ cliente.correoCliente }}" style="width: 50%;">
+                <input type="text" name="correo" id="correo" placeholder="Correo" value="{{ cliente.correoCliente }}"
+                    style="width: 50%;" disabled>
                 <br>
                 <label for="fono">Teléfono:</label>
-                <input type="number" name="fono" id="fono" placeholder="Teléfono" value="{{ cliente.fonoCliente }}" style="width: 50%;">
+                <input type="number" name="fono" id="fono" placeholder="Teléfono" value="{{ cliente.fonoCliente }}"
+                    style="width: 50%;">
                 <br>
                 <label for="direccion">Dirección:</label>
-                <input type="text" name="direccion" id="direccion" placeholder="Dirección" value="{{ cliente.direccionCliente }}" style="width: 50%;">
+                <input type="text" name="direccion" id="direccion" placeholder="Dirección"
+                    value="{{ cliente.direccionCliente }}" style="width: 50%;">
                 <br>
                 <label for="contraseña">Contraseña:</label>
-                <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña" value="{{ cliente.contraseñaCliente }}" style="width: 50%;">
-                <input type="checkbox" id="toggle-password" class="password-toggle" onclick="togglePasswordVisibility()">
+                <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña"
+                    value="{{ cliente.contraseñaCliente }}" style="width: 50%;" disabled>
+                <input type="checkbox" id="toggle-password" class="password-toggle"
+                    onclick="togglePasswordVisibility()">
                 <br>
                 <button type="submit" id="guardar-button" disabled>Guardar</button>
             </div>
@@ -134,17 +143,25 @@
 
     <div id="Seguridad" class="tabcontentCuenta">
         <h3>Seguridad</h3>
-        <p>Tokyo is the capital of Japan.</p>
     </div>
 
     <div id="Tarjetas" class="tabcontentCuenta">
-        <h3>Tarjetas</h3>
-        <p>Tokyo is the capital of Japan.</p>
+        <div class="profile-section">
+            {% if tarjeta %}
+                <div class="card">
+                    <h4>{{ tarjeta.nombreTitular }}</h4>
+                    <p>Número de tarjeta: XXXX-XXXX-XXXX-{{ tarjeta.numeroTarjeta|slice:"-4:" }}</p>
+                    <p>Fecha de vencimiento: {{ tarjeta.fechaExpiracion }}</p>
+                    <a href="">Eliminar</a>
+                </div>
+            {% else %}
+                <p>No se encontró ninguna tarjeta para el cliente en sesión.</p>
+            {% endif %}
+        </div>
     </div>
 
     <div id="Direcciones" class="tabcontentCuenta">
         <h3>Direcciones</h3>
-        <p>Tokyo is the capital of Japan.</p>
     </div>
 
 

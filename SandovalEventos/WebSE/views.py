@@ -2,10 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import authenticate, login
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, DetailView
 from django.urls import reverse_lazy
 from .forms import ContactoForm
-from .models import Producto, Cliente, Pedido, DetallePedido, Evento, Cotizacion, Contacto
+from .models import Producto, Cliente, Pedido, DetallePedido, Evento, Cotizacion, Contacto, Tarjeta, Servicio
 
 # Create your views here.
 
@@ -224,6 +224,9 @@ def Cotizaciones(request):
     }
 
     return render(request, 'Cotizaciones.html', context)
+
+def CoffeeBreak(request):
+    return render(request, 'CoffeeBreak.html')
 
 class EliminarObjeto(DeleteView):
     model = Producto

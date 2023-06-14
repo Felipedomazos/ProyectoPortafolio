@@ -61,10 +61,9 @@
                         </a>
                         <div class="sidebar">
                             {% if request.session.cliente_nombre %}
-                            <a href="#">{{ request.session.cliente_nombre }}</a>
-                            <a href="#">Mis Cotizaciones</a>
+                            <a href="{% url 'cuenta' %}">{{ request.session.cliente_nombre }}</a>
+                            <a href="{% url 'cotizaciones' %}">Mis Cotizaciones</a>
                             <a href="{% url 'administracion' %}">Administración</a>
-                            <a href="#">Cambiar Contraseña</a>
                             <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
                         {% else %}
                             <a href="{% url 'login' %}">Iniciar Sesión</a>

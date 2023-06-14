@@ -1,7 +1,6 @@
 from django.urls import URLPattern, path
 from WebSE import views
-from .views import Inicio, Matrimonio, Celebracion, Tabla, Desayuno, Administracion, adminTablas, adminDesayunos, Cotizaciones, Cuenta, actualizar_cliente, Registro, Login, cerrar_sesion, EliminarObjeto, EliminarCliente
-
+from .views import Inicio, Matrimonio, Celebracion, CoffeeBreak, Tabla, Desayuno, Administracion, adminTablas, adminDesayunos, Cotizaciones, Cuenta, actualizar_cliente, Registro, Login, cerrar_sesion, EliminarObjeto, EliminarCliente
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -9,6 +8,7 @@ urlpatterns = [
     path('', Inicio, name="Inicio"),
     path('matrimonio/', Matrimonio, name="matrimonio"),
     path('celebracion/', Celebracion, name="celebracion"),
+    path('coffeebreak/', CoffeeBreak, name="coffeebreak"),
     path('tabla/', Tabla, name="tabla"),
     path('desayuno/', Desayuno, name="desayuno"),
     path('administracion/', Administracion, name="administracion"),
