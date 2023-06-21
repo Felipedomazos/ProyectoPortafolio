@@ -124,6 +124,9 @@ def Cuenta(request):
     else:
         return redirect('Inicio')
 
+def Nosotros(request):
+    return render(request, 'Nosotros.html')
+
 def actualizar_cliente(request):
     if request.method == 'POST':
         rut = request.POST['rut']
