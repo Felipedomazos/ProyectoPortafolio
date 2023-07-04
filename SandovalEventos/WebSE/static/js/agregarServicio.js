@@ -46,7 +46,12 @@ $(document).ready(function () {
                 });
             },
             error: function (xhr, errmsg, err) {
-                console.log('Error al agregar el servicio a la cotización.');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Seleccione una cotización para agrear el servicio.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
             }
         });
     });

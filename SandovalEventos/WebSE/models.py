@@ -6,6 +6,7 @@ tipos_eventos_choices = [
     ('cumpleaños', 'Cumpleaños'),
     ('aniversario', 'Aniversario'),
     ('fiesta_corporativa', 'Fiesta Corporativa'),
+    ('coffee_break', 'Coffee Break'),
 ]
 
 tipo_servicio_choices = [
@@ -21,6 +22,8 @@ tipo_servicio_choices = [
     ('catering', 'Catering'),
     ('juegos_inflables', 'Juegos Inflables'),
     ('arreglo_floral', 'Arreglo Floral'),
+    ('etretenimiento', 'Entretenimiento'),
+    ('transporte', 'Transporte'),
 ]
 
 subtipo_servicio_choices = [
@@ -43,8 +46,16 @@ subtipo_servicio_choices = [
     ('manteleria', 'Manteleria'),
     ('mesas', 'Mesas'),
     ('sillas', 'Sillas'),
-    ('otros', 'Otros')
+    ('otros', 'Otros'),
+    ('bebestible', 'Bebestible'),
+    ('bocadillo_salado', 'Bocadillo Saladao'),
+    ('bocadillo_dulce', 'Bocadillo Dulce'),
+
 ]
+
+
+class Rol(models.Model):
+    nombre = models.CharField(max_length=255)
 
 
 class Cliente(models.Model):
@@ -55,6 +66,7 @@ class Cliente(models.Model):
     fonoCliente = models.IntegerField(verbose_name='Fono del Cliente')
     direccionCliente = models.CharField(max_length=50, verbose_name='Direccion del Cliente')
     contraseñaCliente = models.CharField(max_length=50, default='')
+    rol = models.ForeignKey(Rol, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         ordering = ["nombreCliente", "apellidoCliente"]
@@ -252,3 +264,4 @@ class Carrito(models.Model):
 
     def subtotal(self):
         return self.cantidad * self.producto.precioProducto
+    

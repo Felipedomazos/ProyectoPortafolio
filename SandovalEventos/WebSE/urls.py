@@ -1,6 +1,6 @@
 from django.urls import URLPattern, path
 from WebSE import views
-from .views import Inicio, Nosotros, Matrimonio, eliminar_cotizacion, detalleCotizacion, agregar_servicio_cotizacion, Carro, detalleFacturacion, mostrarDetalle, Celebracion, CoffeeBreak, Tabla, Desayuno, Administracion, adminTablas, adminDesayunos, adminMatrimonio, Cotizaciones, Cuenta, actualizar_cliente, Registro, Login, cerrar_sesion, EliminarObjeto, EliminarCliente, EliminarServicio
+from .views import Inicio, Nosotros, Matrimonio, galeria, eliminar_cotizacion, detalleCotizacion, agregar_servicio_cotizacion, Carro, detalleFacturacion, mostrarDetalle, Celebracion, CoffeeBreak, Tabla, Desayuno, Administracion, adminTablas, adminDesayunos, adminMatrimonio, Cotizaciones, Cuenta, actualizar_cliente, Registro, Login, cerrar_sesion, EliminarObjeto, EliminarCliente, EliminarServicio
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -34,7 +34,8 @@ urlpatterns = [
     path('agregar-servicio-cotizacion/', agregar_servicio_cotizacion, name='agregar_servicio_cotizacion'),
     path('detalle-cotizacion/<str:cotizacion_nombre>', detalleCotizacion, name='detalle_cotizacion'),
     path('eliminar_cotizacion/', eliminar_cotizacion, name='eliminar_cotizacion'),
-    path('eliminar-servicio-cotizacion/', views.eliminar_servicio_cotizacion, name='eliminar_servicio_cotizacion')
+    path('eliminar-servicio-cotizacion/', views.eliminar_servicio_cotizacion, name='eliminar_servicio_cotizacion'),
+    path('galeria/', galeria, name='galeria')
 ]
 
 

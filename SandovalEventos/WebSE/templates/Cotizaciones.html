@@ -45,15 +45,9 @@
                         <a href="{% url 'Inicio' %}">Contacto</a>
                     </li>
                     <li class="sidebar-container">
-                        <a onclick="openNav()">
+                        <a href="{% url 'carrito' %}">
                             <i class="fa-solid fa-cart-shopping" style="font-size: 27px; margin-top: 2px;"></i>
                         </a>
-                        <div id="SidenavCarrito" class="sidenavCarrito">
-                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                            <p style="text-align: center; text-shadow: 0px 3px #818181;">Productos</p>
-                            <div id="listaProductos" class="lista-productos">
-                            </div>
-                        </div>
                     </li>
                     <li class="sidebar-container">
                         <a onclick="openSidebar()">

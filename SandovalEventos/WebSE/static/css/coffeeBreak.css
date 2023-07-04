@@ -17,3 +17,32 @@
     justify-content: center;
     height: 70vh;
   }
+
+  .tabCB {
+    float: left;
+    background-color: #f1f1f1;
+    width: 20%;
+    height: 100%;
+  }
+  .tabCB button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 20px;
+  }
+  .tabCB button:hover {
+    color: black;
+    background: #a5a5a5;
+  }
+  .tabCB button.active {
+    color: white;
+    background: rgb(139, 80, 149);
+    background: linear-gradient(90deg, rgba(139, 80, 149, 1) 0%, rgba(173, 25, 85, 1) 50%);
+  }

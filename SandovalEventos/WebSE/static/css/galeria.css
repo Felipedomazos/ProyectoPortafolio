@@ -1,0 +1,41 @@
+.collage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .collage img {
+    width: 25%;
+    height: auto;
+    object-fit: cover;
+    margin: 5px;
+  }
+
+  .titulo-galeria {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .titulo-galeria p {
+    font-size: 30px;
+    font-weight: 700;
+  }
+  .volver {
+    margin-left: 40px;
+    margin-top: 15px;
+}
+.btnVolver {
+    border: none;
+    background-color: transparent;
+    color: #981941;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+.btnVolver:hover {
+    color: #981941;
+    text-shadow: 0.2em 0.2em 0.5em black
+}

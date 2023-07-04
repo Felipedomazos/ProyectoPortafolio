@@ -10,7 +10,6 @@
     <link rel="icon" href="{% static '/img/SandovalEventosLogo.png'%}">
     <link rel="stylesheet" href="{% static '/css/inicio.css' %}">
     <link rel="stylesheet" href="{% static '/css/celebracion.css' %}">
-    <link rel="stylesheet" href="{% static '/css/matrimonio.css' %}">
     <link rel="stylesheet" href="{% static '/css/login.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -141,92 +140,93 @@
 
     <div id="Cumpleaños" class="tabCelebContent">
         <div class="tabCumpleaños">
-            <button class="tablinksCumple" onclick="openCumple(event, 'Torta')" id="defaultOpenCumple">Torta</button>
-            <button class="tablinksCumple" onclick="openCumple(event, 'Decoración')">Decoración</button>
-            <button class="tablinksCumple" onclick="openCumple(event, 'Personal')">Personal</button>
-            <button class="tablinksCumple" onclick="openCumple(event, 'Catering')">Catering</button>
+            <button class="tablinksCumple" onclick="openCumple(event, 'Torta Cumple')"
+                id="defaultOpenCumple">Torta</button>
+            <button class="tablinksCumple" onclick="openCumple(event, 'Decoración Cumple')">Decoración</button>
+            <button class="tablinksCumple" onclick="openCumple(event, 'Personal Cumple')">Personal</button>
+            <button class="tablinksCumple" onclick="openCumple(event, 'Catering Cumple')">Catering</button>
             <button class="tablinksCumple" onclick="openCumple(event, 'Juegos Inflables')">Juegos Inflables</button>
         </div>
-        <div id="Torta" class="tabContentCumple">
+        <div id="Torta Cumple" class="tabContentCumple">
             <div class="content-subtipo">
                 {% for servicio in objetos %}
                 {% if servicio.tipo_evento == "cumpleaños" %}
-                    {% if servicio.tipo_servicio == "torta" %}
-                    <div class="cardServ">
-                        <div class="card-content-serv">
-                            <div class="text-container-serv">
-                                <p>{{ servicio.nombreServicio }}</p>
-                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
-                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
-                                    data-bs-heading="{{ servicio.nombreServicio }}"
-                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
-                            </div>
+                {% if servicio.tipo_servicio == "torta" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
                         </div>
                     </div>
-                    {% endif %}
+                </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
         </div>
-        <div id="Decoración" class="tabContentCumple">
+        <div id="Decoración Cumple" class="tabContentCumple">
             <div class="content-subtipo">
                 {% for servicio in objetos %}
                 {% if servicio.tipo_evento == "cumpleaños" %}
-                    {% if servicio.tipo_servicio == "decoracion" %}
-                    <div class="cardServ">
-                        <div class="card-content-serv">
-                            <div class="text-container-serv">
-                                <p>{{ servicio.nombreServicio }}</p>
-                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
-                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
-                                    data-bs-heading="{{ servicio.nombreServicio }}"
-                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
-                            </div>
+                {% if servicio.tipo_servicio == "decoracion" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
                         </div>
                     </div>
-                    {% endif %}
+                </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
         </div>
-        <div id="Personal" class="tabContentCumple">
+        <div id="Personal Cumple" class="tabContentCumple">
             <div class="content-subtipo">
                 {% for servicio in objetos %}
                 {% if servicio.tipo_evento == "cumpleaños" %}
-                    {% if servicio.tipo_servicio == "personal" %}
-                    <div class="cardServ">
-                        <div class="card-content-serv">
-                            <div class="text-container-serv">
-                                <p>{{ servicio.nombreServicio }}</p>
-                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
-                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
-                                    data-bs-heading="{{ servicio.nombreServicio }}"
-                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
-                            </div>
+                {% if servicio.tipo_servicio == "personal" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
                         </div>
                     </div>
-                    {% endif %}
+                </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
         </div>
-        <div id="Catering" class="tabContentCumple">
+        <div id="Catering Cumple" class="tabContentCumple">
             <div class="content-subtipo">
                 {% for servicio in objetos %}
                 {% if servicio.tipo_evento == "cumpleaños" %}
-                    {% if servicio.tipo_servicio == "catering" %}
-                    <div class="cardServ">
-                        <div class="card-content-serv">
-                            <div class="text-container-serv">
-                                <p>{{ servicio.nombreServicio }}</p>
-                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
-                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
-                                    data-bs-heading="{{ servicio.nombreServicio }}"
-                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
-                            </div>
+                {% if servicio.tipo_servicio == "catering" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
                         </div>
                     </div>
-                    {% endif %}
+                </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
@@ -235,20 +235,20 @@
             <div class="content-subtipo">
                 {% for servicio in objetos %}
                 {% if servicio.tipo_evento == "cumpleaños" %}
-                    {% if servicio.tipo_servicio == "juegos_inflables" %}
-                    <div class="cardServ">
-                        <div class="card-content-serv">
-                            <div class="text-container-serv">
-                                <p>{{ servicio.nombreServicio }}</p>
-                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
-                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
-                                    data-bs-heading="{{ servicio.nombreServicio }}"
-                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
-                            </div>
+                {% if servicio.tipo_servicio == "juegos_inflables" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
                         </div>
                     </div>
-                    {% endif %}
-                {% endif %}        
+                </div>
+                {% endif %}
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -256,70 +256,71 @@
 
     <div id="Aniversario" class="tabCelebContent">
         <div class="tabAniversario">
-            <button class="tablinksAniv" onclick="openAniv(event, 'Catering')" id="defaultOpenAniv">Catering</button>
-            <button class="tablinksAniv" onclick="openAniv(event, 'Decoracion')">Decoracion</button>
-            <button class="tablinksAniv" onclick="openAniv(event, 'Personal')">Personal</button>
+            <button class="tablinksAniv" onclick="openAniv(event, 'Catering Aniv')"
+                id="defaultOpenAniv">Catering</button>
+            <button class="tablinksAniv" onclick="openAniv(event, 'Decoracion Aniv')">Decoracion</button>
+            <button class="tablinksAniv" onclick="openAniv(event, 'Personal Aniv')">Personal</button>
             <button class="tablinksAniv" onclick="openAniv(event, 'ArregloFloral')">Arreglo Floral Especial</button>
         </div>
-        <div id="Catering" class="tabContentAniv">
+        <div id="Catering Aniv" class="tabContentAniv">
             <div class="content-subtipo">
                 {% for servicio in objetos %}
                 {% if servicio.tipo_evento == "aniversario" %}
-                    {% if servicio.tipo_servicio == "catering" %}
-                    <div class="cardServ">
-                        <div class="card-content-serv">
-                            <div class="text-container-serv">
-                                <p>{{ servicio.nombreServicio }}</p>
-                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
-                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
-                                    data-bs-heading="{{ servicio.nombreServicio }}"
-                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
-                            </div>
+                {% if servicio.tipo_servicio == "catering" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
                         </div>
                     </div>
-                    {% endif %}
+                </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
         </div>
-        <div id="Decoracion" class="tabContentAniv">
+        <div id="Decoracion Aniv" class="tabContentAniv">
             <div class="content-subtipo">
                 {% for servicio in objetos %}
                 {% if servicio.tipo_evento == "aniversario" %}
-                    {% if servicio.tipo_servicio == "decoracion" %}
-                    <div class="cardServ">
-                        <div class="card-content-serv">
-                            <div class="text-container-serv">
-                                <p>{{ servicio.nombreServicio }}</p>
-                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
-                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
-                                    data-bs-heading="{{ servicio.nombreServicio }}"
-                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
-                            </div>
+                {% if servicio.tipo_servicio == "decoracion" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
                         </div>
                     </div>
-                    {% endif %}
+                </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
         </div>
-        <div id="Personal" class="tabContentAniv">
+        <div id="Personal Aniv" class="tabContentAniv">
             <div class="content-subtipo">
                 {% for servicio in objetos %}
                 {% if servicio.tipo_evento == "aniversario" %}
-                    {% if servicio.tipo_servicio == "personal" %}
-                    <div class="cardServ">
-                        <div class="card-content-serv">
-                            <div class="text-container-serv">
-                                <p>{{ servicio.nombreServicio }}</p>
-                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
-                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
-                                    data-bs-heading="{{ servicio.nombreServicio }}"
-                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
-                            </div>
+                {% if servicio.tipo_servicio == "personal" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
                         </div>
                     </div>
-                    {% endif %}
+                </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
@@ -328,19 +329,19 @@
             <div class="content-subtipo">
                 {% for servicio in objetos %}
                 {% if servicio.tipo_evento == "aniversario" %}
-                    {% if servicio.tipo_servicio == "torta" %}
-                    <div class="cardServ">
-                        <div class="card-content-serv">
-                            <div class="text-container-serv">
-                                <p>{{ servicio.nombreServicio }}</p>
-                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
-                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
-                                    data-bs-heading="{{ servicio.nombreServicio }}"
-                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
-                            </div>
+                {% if servicio.tipo_servicio == "arreglo_floral" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
                         </div>
                     </div>
-                    {% endif %}
+                </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
@@ -349,25 +350,118 @@
 
     <div id="Fiesta" class="tabCelebContent">
         <div class="tabFiesta">
-            <button class="tablinksFiesta" onclick="openFiesta(event, 'Catering')" id="defaultOpenFiesta">Catering</button>
+            <button class="tablinksFiesta" onclick="openFiesta(event, 'Catering Fiesta')"
+                id="defaultOpenFiesta">Catering</button>
             <button class="tablinksFiesta" onclick="openFiesta(event, 'Entrenemiento')">Entrenemiento</button>
-            <button class="tablinksFiesta" onclick="openFiesta(event, 'Decoración')">Decoración</button>
-            <button class="tablinksFiesta" onclick="openFiesta(event, 'Regalos')">Regalos</button>
-            <button class="tablinksFiesta" onclick="openFiesta(event, 'Personal')">Personal</button>
+            <button class="tablinksFiesta" onclick="openFiesta(event, 'Decoración Fiesta')">Decoración</button>
+            <button class="tablinksFiesta" onclick="openFiesta(event, 'Personal Fiesta')">Personal</button>
             <button class="tablinksFiesta" onclick="openFiesta(event, 'Transporte')">Servicio de Transporte</button>
         </div>
 
-        <div id="Catering" class="tabContentFiesta">
+        <div id="Catering Fiesta" class="tabContentFiesta">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "fiesta" %}
+                {% if servicio.tipo_servicio == "catering" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
         <div id="Entrenemiento" class="tabContentFiesta">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "fiesta" %}
+                {% if servicio.tipo_servicio == "entretenimiento" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
-        <div id="Decoracion" class="tabContentFiesta">
+        <div id="Decoracion Fiesta" class="tabContentFiesta">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "fiesta" %}
+                {% if servicio.tipo_servicio == "decoracion" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
-        <div id="Regalos" class="tabContentFiesta">
-        </div>
-        <div id="Personal" class="tabContentFiesta">
+        <div id="Personal Fiesta" class="tabContentFiesta">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "fiesta" %}
+                {% if servicio.tipo_servicio == "personal" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
         <div id="Transporte" class="tabContentFiesta">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "fiesta" %}
+                {% if servicio.tipo_servicio == "transporte" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
 
     </div>

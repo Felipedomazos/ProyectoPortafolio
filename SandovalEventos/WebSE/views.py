@@ -68,7 +68,7 @@ def Celebracion(request):
         objeto = Servicio(nombreServicio=nombreServicio, nombrePersona=nombrePersona, precioServicio=precioServicio, tipo_evento=tipo_evento, tipo_servicio=tipo_servicio, subtipo_servicio=subtipo_servicio, imagenServicio=imagenServicio)
         objeto.save()
 
-    objetos = Servicio.objects.filter(Q(tipo_evento__icontains='Cumpleaños') | Q(tipo_evento__icontains='Aniversario') | Q(tipo_evento__icontains='Fiesta'))
+    objetos = Servicio.objects.filter(Q(tipo_evento__icontains='Cumpleaños') | Q(tipo_evento__icontains='aniversario') | Q(tipo_evento__icontains='Fiesta'))
 
     rut_cliente = request.session.get('cliente_rut')
     cotizaciones = Cotizacion.objects.filter(rutCliente=rut_cliente)
@@ -297,7 +297,28 @@ def Cotizaciones(request):
     return render(request, 'Cotizaciones.html', context)
 
 def CoffeeBreak(request):
-    return render(request, 'CoffeeBreak.html')
+    if request.method == 'POST':
+        nombreServicio = request.POST.get('nombreServicio')
+        nombrePersona = request.POST.get('nombrePersona')
+        precioServicio = request.POST.get('precioServicio')
+        tipo_evento = request.POST.get('tipo_evento')
+        tipo_servicio = request.POST.get('tipo_servicio')
+        subtipo_servicio = request.POST.get('subtipo_servicio')
+        imagenServicio = request.FILES.get('imagenServicio')
+
+        objeto = Servicio(nombreServicio=nombreServicio, nombrePersona=nombrePersona, precioServicio=precioServicio, tipo_evento=tipo_evento, tipo_servicio=tipo_servicio, subtipo_servicio=subtipo_servicio, imagenServicio=imagenServicio)
+        objeto.save()
+
+    objetos = Servicio.objects.filter(tipo_evento__icontains='Coffee Break')
+
+    rut_cliente = request.session.get('cliente_rut')
+    cotizaciones = Cotizacion.objects.filter(rutCliente=rut_cliente)
+
+    context = {
+        'cotizaciones': cotizaciones,
+        'objetos': objetos
+    }
+    return render(request, 'CoffeeBreak.html', context)
 
 def mostrarDetalle(request, producto_nombre):
     producto = Producto.objects.get(nombreProducto=producto_nombre)
@@ -442,6 +463,9 @@ def eliminar_cotizacion(request):
             return HttpResponseBadRequest("La cotización no existe")
     else:
         return HttpResponseBadRequest("Solicitud no válida")
+
+def galeria(request):
+    return render(request, 'Galeria.html')
 
 class EliminarObjeto(DeleteView):
     model = Producto

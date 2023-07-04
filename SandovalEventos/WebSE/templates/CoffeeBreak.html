@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static '/css/inicio.css' %}">
     <link rel="stylesheet" href="{% static '/css/coffeeBreak.css' %}">
     <link rel="stylesheet" href="{% static '/css/login.css' %}">
+    <link rel="stylesheet" href="{% static '/css/matrimonio.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -46,15 +47,9 @@
                             <a href="{% url 'Inicio' %}">Contacto</a>
                         </li>
                         <li class="sidebar-container">
-                            <a onclick="openNav()">
+                            <a href="{% url 'carrito' %}">
                                 <i class="fa-solid fa-cart-shopping" style="font-size: 27px; margin-top: 2px;"></i>
                             </a>
-                            <div id="SidenavCarrito" class="sidenavCarrito">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                                <p style="text-align: center; text-shadow: 0px 3px #818181;">Productos</p>
-                                <div id="listaProductos" class="lista-productos">
-                                </div>
-                            </div>
                         </li>
                         <li class="sidebar-container">
                             <a onclick="openSidebar()">
@@ -62,13 +57,13 @@
                             </a>
                             <div class="sidebar">
                                 {% if request.session.cliente_nombre %}
-                                    <a href="{% url 'cuenta' %}">{{ request.session.cliente_nombre }}</a>
-                                    <a href="{% url 'cotizaciones' %}">Mis Cotizaciones</a>
-                                    <a href="{% url 'administracion' %}">Administración</a>
-                                    <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+                                <a href="{% url 'cuenta' %}">{{ request.session.cliente_nombre }}</a>
+                                <a href="{% url 'cotizaciones' %}">Mis Cotizaciones</a>
+                                <a href="{% url 'administracion' %}">Administración</a>
+                                <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
                                 {% else %}
-                                    <a href="{% url 'login' %}">Iniciar Sesión</a>
-                                    <a href="{% url 'registro' %}">Registrarse</a>
+                                <a href="{% url 'login' %}">Iniciar Sesión</a>
+                                <a href="{% url 'registro' %}">Registrarse</a>
                                 {% endif %}
                             </div>
                         </li>
@@ -85,13 +80,125 @@
 
     </div>
 
+    <div class="modal fade" id="mymodal" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modalAgregar-header">
+                    Title
+                </div>
+                <form id="modal-form" method="post" action="{% url 'agregar_servicio_cotizacion' %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="modal-content-agregar">
+                            <label for="select-cotizacion">Agregar a:</label>
+                            <select id="select-cotizacion" name="cotizacion">
+                                <option value="seleccionCotizacion" selected>Seleccione una Cotización...</option>
+                                {% for cotizacion in cotizaciones %}
+                                <option value="{{ cotizacion.nroCotizacion }}">{{ cotizacion.nombreCotizacion }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" oninput="calcularPrecioTrago()" value="1">
+                        </div>
+                        <div style="display: flex;">
+                            <label for="">Precio:</label>
+                            <div class="modal-precio" style="margin-left: 30px;">
+                                Precio
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="cantidad-actualizada" name="cantidad-actualizada" value="">
+                    <input type="hidden" id="nombre-servicio" name="nombre_servicio" value="">
+                    <input type="hidden" id="cotizacionSeleccionada" name="cotizacionSeleccionada" value="">
+                    <input type="hidden" id="nombreCotizacion" name="nombreCotizacion" value="">
+                    <div id="modal-footer" class="modal-footer">
+                        <button id="btn-cancelar" type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                            oninput="restablecerModal()">
+                            Cerrar
+                        </button>
+                        <button id="btn-agregar" type="button" class="btn-agregar" data-bs-dismiss="modal">
+                            Agregar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <a id="scroll-to-top" onclick="scrollToTop()">
         <i class="fa-solid fa-circle-up" style="font-size: 25px;"></i>
     </a>
 
-    
+    <div class="tabCB">
+        <button class="tablinksCB" onclick="openCB(event, 'Bebestible')" id="defaultOpenCB">Bebestible</button>
+        <button class="tablinksCB" onclick="openCB(event, 'Bocadillos Salados')">Bocadillos Salados</button>
+        <button class="tablinksCB" onclick="openCB(event, 'Bocadillos Dulces')">Bocadillos Dulces</button>
+    </div>
 
-    
+    <div id="Bebestible" class="tabContentCB">
+        <div class="content-subtipo">
+            {% for servicio in objetos %}
+            {% if servicio.subtipo_servicio == "bebestible" %}
+            <div class="cardServ">
+                <div class="card-content-serv">
+                    <div class="text-container-serv">
+                        <p>{{ servicio.nombreServicio }}</p>
+                        <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-nombre-servicio="{{ servicio.nombreServicio }}"
+                            data-bs-heading="{{ servicio.nombreServicio }}"
+                            data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div id="Bocadillos Salados" class="tabContentCB">
+        <div class="content-subtipo">
+            {% for servicio in objetos %}
+            {% if servicio.subtipo_servicio == "bocadillo_salado" %}
+            <div class="cardServ">
+                <div class="card-content-serv">
+                    <div class="text-container-serv">
+                        <p>{{ servicio.nombreServicio }}</p>
+                        <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-nombre-servicio="{{ servicio.nombreServicio }}"
+                            data-bs-heading="{{ servicio.nombreServicio }}"
+                            data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div id="Bocadillos Dulces" class="tabContentCB">
+        <div class="content-subtipo">
+            {% for servicio in objetos %}
+            {% if servicio.subtipo_servicio == "bocadilla_dulce" %}
+            <div class="cardServ">
+                <div class="card-content-serv">
+                    <div class="text-container-serv">
+                        <p>{{ servicio.nombreServicio }}</p>
+                        <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                            data-nombre-servicio="{{ servicio.nombreServicio }}"
+                            data-bs-heading="{{ servicio.nombreServicio }}"
+                            data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
 
 
 
@@ -104,6 +211,7 @@
     <script src="{% static '/js/carrito.js'%}"></script>
     <script src="{% static '/js/header.js'%}"></script>
     <script src="{% static '/js/tipoAdmin.js'%}"></script>
+    <script src="{% static '/js/coffeeBreak.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>

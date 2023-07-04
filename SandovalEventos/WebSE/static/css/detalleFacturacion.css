@@ -1,0 +1,14 @@
+.table-resumen-fact a {
+    text-decoration: none;
+    color: black;
+}
+
+.table-resumen-fact a:hover {
+    color: #981941;
+    text-shadow: 0.2em 0.2em 0.5em black
+}
+
+.titulo-res {
+    font-size: 25px;
+    font-weight: 600;
+}
