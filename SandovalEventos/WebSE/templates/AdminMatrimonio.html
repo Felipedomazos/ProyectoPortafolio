@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandoval Eventos</title>
+    <link rel="icon" href="{% static '/img/SandovalEventosLogo.png'%}">
+    <link rel="stylesheet" href="{% static '/css/inicio.css' %}">
+    <link rel="stylesheet" href="{% static '/css/adminTablas.css' %}">
+    <link rel="stylesheet" href="{% static '/css/adminMatrimonio.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+
+<body style="background-color:rgb(241, 230, 241);">
+    <!--NavBar-->
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top"
+        style="background: rgba(0, 0, 0, .3); backdrop-filter: blur(10px);">
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                {% load static %}
+                <img src="{% static '/img/SandovalEventosLetras.png'%}" alt="" width="230" height="40"
+                    class="d-inline-blockalign-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" onclick="toggleMenu()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarOptions" class="collapse navbar-collapse justify-content-end">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{% url 'Inicio' %}">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'nosotros' %}">Nosotros</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'Inicio' %}">Servicios</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'Inicio' %}">Contacto</a>
+                    </li>
+                    <li class="sidebar-container">
+                        <a onclick="openNav()">
+                            <i class="fa-solid fa-cart-shopping" style="font-size: 27px; margin-top: 2px;"></i>
+                        </a>
+                        <div id="SidenavCarrito" class="sidenavCarrito">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                            <p style="text-align: center; text-shadow: 0px 3px #818181;">Productos</p>
+                            <div id="listaProductos" class="lista-productos">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="sidebar-container">
+                        <a onclick="openSidebar()">
+                            <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
+                        </a>
+                        <div class="sidebar">
+                            {% if request.session.cliente_nombre %}
+                            <a href="{% url 'cuenta' %}">{{ request.session.cliente_nombre }}</a>
+                            <a href="{% url 'cotizaciones' %}">Mis Cotizaciones</a>
+                            <a href="{% url 'administracion' %}">Administración</a>
+                            <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+                            {% else %}
+                            <a href="{% url 'login' %}">Iniciar Sesión</a>
+                            <a href="{% url 'registro' %}">Registrarse</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br>
+
+    <a id="scroll-to-top" onclick="scrollToTop()">
+        <i class="fa-solid fa-circle-up" style="font-size: 25px;"></i>
+    </a>
+
+    <div class="topnav">
+        <a href="#" class="active tablink" onclick="openPage('Agregar', this)" id="defaultOpen">Agregar</a>
+        <a href="#" class="tablink" onclick="openPage('Modificar', this)">Modificar</a>
+        <a href="#" class="tablink" onclick="openPage('Eliminar', this)">Eliminar</a>
+    </div>
+
+    <div id="mensaje-exito" class="success-message" style="display: none;">
+        ¡Éxito! La tabla se ha agregado correctamente.
+    </div>
+
+    <div id="Agregar" class="tabcontent">
+        <p class="texto">Nuevo Servicio</p>
+        <form action="{% url 'adminMatrimonio' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="btnsForm">
+                <a style="text-decoration: none;" href="{% url 'administracion' %}">
+                    <input type="button" class="btn btn-outline-danger" value="Cancelar">
+                </a>
+                <input type="submit" class="btn btn-outline-success" value="Agregar">
+            </div>
+        </form>
+    </div>
+
+    <div id="Modificar" class="tabcontent">
+        <p class="texto">Editar Servicio</p>
+        <div class="tablasEdit">
+            <div class="tableEdit">
+                {% for servicio in objetos %}
+                <div class="editTabla">
+                    <div class="info">
+                        <h6>{{ servicio.id }}</h6>
+                        <h4>{{ servicio.nombreServicio }}</h4>
+                    </div>
+                    <form style="margin: 0 0 0 20px;" action="{% url 'adminMatrimonio' servicio.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" name="edit_btn_{{ servicio.id }}" value="Editar">
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="camposTabla">
+                <form action="{% url 'adminMatrimonio' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombreProducto" id="nombreProducto" value="{{ producto.nombreProducto }}"
+                        required><br><br>
+
+                    <label for="descripcion">Descripción:</label>
+                    <textarea name="descProducto" id="descProducto" rows="4" cols="50"
+                        value="{{ producto.descProducto }}" required></textarea><br><br>
+
+                    <label for="cantidad_personas">Cantidad de Personas:</label>
+                    <input type="number" name="cantPersonas" id="cantPersonas" value="{{ producto.cantPersonas }}"
+                        required><br><br>
+
+                    <label for="precio">Precio:</label>
+                    <input type="number" name="precioProducto" id="precioProducto" step="0.01"
+                        value="{{ producto.precioProducto }}" required><br><br>
+
+                    <label for="imagen">Imagen:</label>
+                    <input type="file" name="imagenProductos" id="imagenProductos" value="{{ producto.imagenProducto }}"
+                        required><br><br>
+
+                    <div class="btnsForm">
+                        <a style="text-decoration: none;" href="{% url 'administracion' %}">
+                            <input type="button" class="btn btn-outline-danger" value="Cancelar">
+                        </a>
+                        <input type="submit" class="btn btn-outline-success" value="Guardar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="Eliminar" class="tabcontent">
+        <p class="texto">Eliminar Servicio</p>
+        <div class="tablasTable">
+            {% for servicio in objetos %}
+            <div class="elimTabla">
+                <div class="info">
+                    <h6>{{ servicio.id }}</h6>
+                    <h4>{{ servicio.nombreServicio }}</h4>
+                </div>
+                <form action="{% url 'adminMatrimonio' servicio.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Eliminar">
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+
+    <br><br><br><br>
+
+    <script src="{% static '/js/btnSubir.js'%}"></script>
+    <script src="{% static '/js/header.js'%}"></script>
+    <script src="{% static '/js/tipoAdmin.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

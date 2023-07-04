@@ -16,20 +16,34 @@ tipo_servicio_choices = [
     ('postre', 'Postre'),
     ('personal', 'Personal'),
     ('vajilla_cristaleria', 'Vajilla y Cristalería'),
-    ('dj', 'DJ'),
-    ('iluminacion', 'Iluminación'),
     ('decoracion', 'Decoración'),
-    ('fotografo', 'Fotógrafo'),
     ('torta', 'Torta'),
+    ('catering', 'Catering'),
+    ('juegos_inflables', 'Juegos Inflables'),
+    ('arreglo_floral', 'Arreglo Floral'),
 ]
 
 subtipo_servicio_choices = [
-    ('tragos', 'Tragos'),
+    ('destilado', 'Destilado'),
+    ('bebida', 'Bebida'),
     ('bar_adicional', 'Bar Adicional'),
     ('canapes', 'Canapés'),
     ('tapaditos', 'Tapaditos'),
     ('brochetas', 'Brochetas'),
     ('empanadas_cocktail', 'Empanadas Cocktail'),
+    ('menu_normal', 'Menu Normal'),
+    ('menu_ninos', 'Menu Niños'),
+    ('bartender', 'Bartender'),
+    ('garzón/a', 'Garzón/a'),
+    ('cocinero', 'Cocinero'),
+    ('fotógrafo/a', 'Fotógrafo/a'),
+    ('dj', 'DJ'),
+    ('vajilla', 'Vajilla'),
+    ('cristaleria', 'Cristaleria'),
+    ('manteleria', 'Manteleria'),
+    ('mesas', 'Mesas'),
+    ('sillas', 'Sillas'),
+    ('otros', 'Otros')
 ]
 
 
@@ -47,6 +61,7 @@ class Cliente(models.Model):
 
     def __str__(self):
         return self.nombreCliente
+
 
 class Tarjeta(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='tarjetas')
@@ -86,7 +101,7 @@ class DetallePedido(models.Model):
 class Producto(models.Model):
     idProducto = models.UUIDField(primary_key=True, default=uuid.uuid4, verbose_name='ID del Producto')
     nombreProducto = models.CharField(max_length=30,verbose_name='Nombre del Producto')
-    descProducto = models.CharField(max_length=60,verbose_name='Descripcion del Producto')
+    descProducto = models.CharField(max_length=200,verbose_name='Descripcion del Producto')
     cantPersonas = models.IntegerField(verbose_name='Cantidad de Personas Maximas para el producto', default='0')
     precioProducto = models.IntegerField(verbose_name='Precio del Producto')
     imagenProducto = models.ImageField(upload_to='img/', default='0')
@@ -94,6 +109,90 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombreProducto
 
+    def to_dict(self):
+        return {
+            'nombreProducto': self.nombreProducto,
+            'cantPersonas': self.cantPersonas,
+            'precioProducto': self.precioProducto,
+        }
+
+
+class Servicio(models.Model):
+    nombreServicio = models.CharField(max_length=100, verbose_name='Nombre del Servicio')
+    descServicio = models.CharField(max_length=200,verbose_name='Descripción del Servicio', default='', blank=True)
+    nombrePersona = models.CharField(max_length=100, verbose_name='Nombre de quien imparte el servicio', default='', blank=True)
+    precioServicio = models.IntegerField(verbose_name='Precio del Servicio')
+    tipo_evento = models.CharField(
+        max_length=20, choices=tipos_eventos_choices, default='matrimonio'
+    )
+    tipo_servicio = models.CharField(
+        max_length=30, choices=tipo_servicio_choices, default='bar'
+    )
+    subtipo_servicio = models.CharField(
+        max_length=100, choices=subtipo_servicio_choices, default='', blank=True
+    )
+    imagenServicio = models.ImageField(upload_to='img/', default='none', blank=True)
+
+    def __str__(self):
+        return self.nombreServicio
+
+    def save(self, *args, **kwargs):
+        if self.tipo_evento == 'matrimonio':
+            if self.tipo_servicio == 'bar': 
+                self.subtipo_servicio_choices = [
+                    ('destilado', 'Destilado'),
+                    ('bebida', 'Bebida'),
+                    ('bar_adicional', 'Bar Adicional'),
+                ]
+            elif self.tipo_servicio == 'aperitivos':
+                self.subtipo_servicio_choices = [
+                    ('canapes', 'Canapés'),
+                    ('tapaditos', 'Tapaditos'),
+                    ('brochetas', 'Brochetas'),
+                    ('empanadas_cocktail', 'Empanadas Cocktail'),
+                ]
+            elif self.tipo_servicio == 'entrada':
+                self.subtipo_servicio_choices = [
+                    ('menu_normal', 'Menu Normal'),
+                    ('menu_ninos', 'Menu Niños'),
+                ]
+            elif self.tipo_servicio == 'personal':
+                self.subtipo_servicio_choices = [
+                    ('bartender', 'Bartender'),
+                    ('garzón/a', 'Garzón/a'),
+                    ('fotógrafo/a', 'Fotógrafo/a'),
+                    ('cocinero', 'Cocinero'),
+                    ('dj', 'DJ')
+                ]
+            elif self.tipo_servicio == 'vajilla_cristaleria':
+                self.subtipo_servicio_choices = [
+                    ('vajilla', 'Vajilla'),
+                    ('cristaleria', 'Cristaleria')
+                ]
+            elif self.tipo_servicio == 'decoracion':
+                self.subtipo_servicio_choices = [
+                    ('manteleria', 'Manteleria'),
+                    ('mesas', 'Mesas'),
+                    ('sillas', 'Sillas'),
+                    ('otros', 'Otros')
+                ]
+        elif self.tipo_evento == 'cumpleaños':
+            if self.tipo_servicio == 'bar':
+                self.subtipo_servicio_choices = [
+                    ('tragos', 'Tragos'),
+                    ('bar_adicional', 'Bar Adicional'),
+                ]
+            elif self.tipo_servicio == 'aperitivos':
+                self.subtipo_servicio_choices = [
+                    ('canapes', 'Canapés'),
+                    ('tapaditos', 'Tapaditos'),
+                    ('brochetas', 'Brochetas'),
+                    ('empanadas_cocktail', 'Empanadas Cocktail'),
+                ]
+            # Agrega más condiciones para cada opción en tipo_servicio_choices dentro de la condición 'cumpleaños'
+        # Agrega más condiciones para cada opción en tipos_eventos_choices
+        
+        super().save(*args, **kwargs)
 
 
 class Cotizacion(models.Model):
@@ -103,6 +202,19 @@ class Cotizacion(models.Model):
 
     def __str__(self):
         return self.nombreCotizacion
+
+
+class DetalleCotizacion(models.Model):
+    cotizacion = models.ForeignKey(Cotizacion, on_delete=models.CASCADE, verbose_name='Numero de la Cotizacion')
+    servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
+    cantidad = models.IntegerField(default='')
+
+    def subtotal(self):
+        return self.cantidad * self.servicio.precioServicio
+    
+    def nombre_cotizacion(self):
+        return self.cotizacion.nombreCotizacion
+
 
 
 class Evento(models.Model):
@@ -133,19 +245,10 @@ class Contacto(models.Model):
     def __str__(self):
         return self.nombre
     
+class Carrito(models.Model):
+    rutCliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, max_length=9, verbose_name='RUT del Cliente')
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.IntegerField(default='')
 
-class Servicio(models.Model):
-    nombreServicio = models.CharField(max_length=100, verbose_name='Nombre del Servicio')
-    precioServicio = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Precio del Servicio')
-    tipo_evento = models.CharField(
-        max_length=20, choices=tipos_eventos_choices, default='matrimonio'
-    )
-    tipo_servicio = models.CharField(
-        max_length=30, choices=tipo_servicio_choices, default='bar'
-    )
-    subtipo_servicio = models.CharField(
-        max_length=100, choices=subtipo_servicio_choices, blank=True
-    )
-
-    def __str__(self):
-        return self.nombreServicio
+    def subtotal(self):
+        return self.cantidad * self.producto.precioProducto

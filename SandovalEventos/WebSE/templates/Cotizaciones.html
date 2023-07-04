@@ -80,18 +80,38 @@
         <i class="fa-solid fa-circle-up" style="font-size: 25px;"></i>
     </a>
 
-    <div id="modalCrearCotizacion" class="modalCoti">
-        <div class="modal-content-coti">
+    <div id="modalCrearCotizacion" class="modal-crear-coti">
+        <div class="modal-content-crear-coti">
             <form action="{% url 'cotizaciones' %}" method="POST">
                 {% csrf_token %}
-                <a href="">
-                    <span id="closeModal" class="closeCoti">&times;</span>
+                <a style="cursor: pointer;">
+                    <span id="closeModalCC" class="closeCoti">&times;</span>
                 </a>
                 <h2>Crear Cotización</h2>
                 <label for="" style="color: black; font-size: 20px;">Nombre</label>
-                <input type="text" name="nombre_cotizacion" style="border-color: black;">
+                <input type="text" name="nombre_cotizacion" style="border-color: black;" required>
                 <input type="hidden" value="{{ request.session.cliente_rut }}">
                 <button type="submit">Crear</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalEliminarCotizacion" class="modal-elim-coti">
+        <div class="modal-content-elim-coti">
+            <form id="eliminarCotizacionForm" action="{% url 'eliminar_cotizacion' %}" method="POST" >
+                {% csrf_token %}
+                <a style="cursor: pointer;">
+                    <span id="closeModalEC" class="closeCoti">&times;</span>
+                </a>
+                <h2>Eliminar Cotización</h2>
+                <label for="select-elim-coti" style="color: black; font-size: 20px;">Nombre</label>
+                <select name="eliminarCotizacion" id="select-elim-coti">
+                    {% for cotizacion in cotizaciones %}
+                    <option value="{{ cotizacion.nroCotizacion }}">{{ cotizacion.nombreCotizacion }}</option>
+                    {% endfor %}
+                </select>
+                <input name="cliente_rut" type="hidden" value="{{ request.session.cliente_rut }}">
+                <button id="btn-eliminar" type="submit">Eliminar</button>
             </form>
         </div>
     </div>
@@ -100,10 +120,10 @@
         <div class="textyopc">
             <p>Mis Cotizaciones</p>
             <div class="opcCotizacion">
-                <a id="crearCotizacion" href="#"><!-- Modal para crear cotizacion -->
+                <a id="crearCotizacion"><!-- Modal para crear cotizacion -->
                     <i class="fa-solid fa-plus"></i>
                 </a>
-                <a id="eliminarCotizacion" href="#"><!-- Modal para eliminar cotizacion -->
+                <a id="eliminarCotizacion"><!-- Modal para eliminar cotizacion -->
                     <i class="fa-solid fa-trash"></i>
                 </a>
             </div>
@@ -117,14 +137,14 @@
         {% endif %}
         <div class="cotizaciones">
             {% for cotizacion in cotizaciones %}
-            <a href="#">
+            <a href="{% url 'detalle_cotizacion' cotizacion.nombreCotizacion %}">
                 <div class="cotizacion">
                     <p>{{ cotizacion.nombreCotizacion }}</p>
                     <i class="fa-solid fa-angle-right"></i>
                 </div>
             </a>
             {% empty %}
-            <p>No hay cotizaciones disponibles.</p>
+            <p style="text-align: center;">No hay cotizaciones disponibles.</p>
             {% endfor %}
         </div>
     </div>
@@ -135,11 +155,11 @@
     <script src="{% static '/js/btnSubir.js'%}"></script>
     <script src="{% static '/js/carrito.js'%}"></script>
     <script src="{% static '/js/header.js'%}"></script>
-    <script src="{% static '/js/tipoAdmin.js'%}"></script>
     <script src="{% static '/js/Cotizaciones.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

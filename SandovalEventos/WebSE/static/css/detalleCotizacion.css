@@ -1,0 +1,114 @@
+.titulo {
+    display: flex;
+    margin: 20px 0 20px 40px;
+    justify-content: space-between;
+    max-width: 63%;
+}
+.titulo p {
+    font-size: 35px;
+    font-weight: 600;
+    align-items: center;
+}
+#bscr-serv {
+    margin-top: 20px;
+    width: 50%;
+    height: 30px;
+    border: 2px solid #981941;
+}
+#bscr-serv:focus{
+    outline: none;
+}
+.buscador-serv {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.buscador-serv label {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.volver {
+    margin-left: 40px;
+    margin-top: 15px;
+}
+.btnVolver {
+    border: none;
+    background-color: transparent;
+    color: #981941;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+.btnVolver:hover {
+    color: #981941;
+    text-shadow: 0.2em 0.2em 0.5em black
+}
+.btnEliminar {
+    border: none;
+    background-color: transparent;
+    color: #919191;
+}
+.btnEliminar:hover {
+    color: #981941;
+}
+
+.titulo-resumen-tabla {
+    display: flex;
+    width: 20%;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 2px solid #981941;
+    background-color: white;
+}
+.titulo-resumen-tabla p {
+    font-size: 20px;
+}
+
+.resumen-tabla {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.resumen-tabla p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.content-servicios-cotizacion {
+    display: flex;
+    padding-left: 40px;
+    padding-right: 100px;
+    justify-content: space-between;
+}
+.tablaServicios {
+    width: 70%;
+}
+.tablaServicios thead {
+    color: white;
+    background-color: #981941;
+    text-align: center;
+}
+.tablaServicios tbody {
+    text-align: center;
+}
+.tablaServicios tbody tr {
+    border-bottom: 1px solid #981941;
+}
+.btn-enviar-cotizacion {
+    height: 30%;
+    width: 100%;
+    border: none;
+    color: white;
+    background-color: #981941;
+}
+.btn-enviar-cotizacion:hover {
+    background-color: #68102c;
+}
+#tit-resumen {
+    text-align: center;
+    width: 100%;
+    border-bottom: 2px solid #981941;
+}

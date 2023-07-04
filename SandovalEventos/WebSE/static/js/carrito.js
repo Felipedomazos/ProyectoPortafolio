@@ -1,72 +1,75 @@
-function openNav() {
-    document.getElementById("SidenavCarrito").style.width = "100%";
-    document.getElementById("SidenavCarrito").style.left = "0"; // Agrega esta línea
+// Detalle Producto - cantidad
+function incrementQuantity() {
+  const quantityInput = document.getElementById('quantity');
+  const currentQuantity = parseInt(quantityInput.value);
+  quantityInput.value = currentQuantity + 1;
+}
+function decrementQuantity() {
+  const quantityInput = document.getElementById('quantity');
+  const currentQuantity = parseInt(quantityInput.value);
+
+  if (currentQuantity > 1) {
+    quantityInput.value = currentQuantity - 1;
   }
-  
-  function closeNav() {
-    document.getElementById("SidenavCarrito").style.width = "0";
-  }
-
-function agregarAlCarrito(idProducto) {
-    // Obtener el elemento del producto seleccionado
-    var producto = document.getElementById(idProducto);
-
-
-    // Obtener los detalles del producto
-    var imagen = producto.querySelector('img').src;
-    var nombre = producto.querySelector('h3').textContent;
-    var precio = producto.querySelector('.price').textContent;
-
-
-    // Crear un nuevo elemento para el producto en el sidenav
-    var nuevoProducto = document.createElement('div');
-    nuevoProducto.classList.add('producto-carrito');
-    nuevoProducto.innerHTML = `
-      <div class="contador">
-        <button class="contador-btn" onclick="incrementarContador(this)">+</button>
-        <span class="contador-valor">1</span>
-        <button class="contador-btn" onclick="decrementarContador(this)">-</button>
-      </div>
-      <img src="${imagen}" alt="${nombre}" />
-      <div class="info">
-        <h4>${nombre}</h4>
-        <p>Precio: ${precio}</p>
-      </div>
-      <button class="eliminar-producto" onclick="eliminarDelCarrito(this)">Eliminar</button>
-    `;
-
-
-    // Agregar el nuevo producto al sidenav
-    var listaProductos = document.getElementById('listaProductos');
-    listaProductos.appendChild(nuevoProducto);
-
-    var x = document.getElementById("msj");
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3500);
 }
 
+// Detalle Producto - Agregar al Carro
+function addToCart(productId) {
+  const quantityInput = document.getElementById('quantity');
+  const quantity = parseInt(quantityInput.value);
 
-function eliminarDelCarrito(botonEliminar) {
-    // Obtener el elemento padre del botón (producto-carrito)
-    var producto = botonEliminar.parentNode;
 
-
-    // Eliminar el producto del DOM
-    producto.parentNode.removeChild(producto);
+  fetch('/agregar-al-carrito/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': '{{ csrf_token }}',
+    },
+    body: JSON.stringify({ productId: productId, quantity: quantity }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      Swal.fire({
+        text: 'Producto añadido al carrito',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      })
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Ocurrió un error al agregar el producto al carrito');
+    });
 }
 
-
-function decrementarContador(botonContador) {
-    var contadorValor = botonContador.previousElementSibling;
-    var valor = parseInt(contadorValor.textContent);
-    if (valor > 1) {
-        contadorValor.textContent = valor - 1;
-    }
-}
-
-
-function incrementarContador(botonContador) {
-    var contadorValor = botonContador.nextElementSibling;
-    var valor = parseInt(contadorValor.textContent);
-    contadorValor.textContent = valor + 1;
+// Carrito - Eliminar del Carro
+function eliminarDelCarrito(itemId) {
+  // Realizar una solicitud POST para eliminar el elemento del carrito
+  fetch('/eliminar-del-carrito/', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': '{{ csrf_token }}',  // Obtener el token CSRF
+      },
+      body: JSON.stringify({ itemId: itemId }),
+  })
+  .then(response => response.json())
+  .then(data => {
+      // Manejar la respuesta del servidor, por ejemplo, eliminar la fila correspondiente en la tabla del carrito
+      if (data.success) {
+        const row = document.getElementById(itemId);
+        Swal.fire({
+          title: 'Éxito',
+          text: 'Producto eliminado del carrito',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        }).then(() => {
+          row.remove();
+        });
+      }
+  })
+  .catch(error => {
+      // Manejar cualquier error
+      console.error(error);
+  });
 }

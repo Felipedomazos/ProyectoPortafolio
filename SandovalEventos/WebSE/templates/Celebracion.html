@@ -47,15 +47,9 @@
                             <a href="{% url 'Inicio' %}">Contacto</a>
                         </li>
                         <li class="sidebar-container">
-                            <a onclick="openNav()">
+                            <a href="{% url 'carrito' %}">
                                 <i class="fa-solid fa-cart-shopping" style="font-size: 27px; margin-top: 2px;"></i>
                             </a>
-                            <div id="SidenavCarrito" class="sidenavCarrito">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                                <p style="text-align: center; text-shadow: 0px 3px #818181;">Productos</p>
-                                <div id="listaProductos" class="lista-productos">
-                                </div>
-                            </div>
                         </li>
                         <li class="sidebar-container">
                             <a onclick="openSidebar()">
@@ -90,164 +84,306 @@
         <i class="fa-solid fa-circle-up" style="font-size: 25px;"></i>
     </a>
 
-    <div class="titulos">
-        <div class="lineV">
-            <div class="textTitulo">
-                <p>Tipo de Celebración
-                <div class="lineH"></div>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="celebracion">
-        <div class="opcTipoCeleb">
-            <label class="opcLabelCeleb tablink" onclick="openPage('Cumpleaños', this)">Cumpleaños
-                <input type="radio" checked="checked" value="Cumpleaños" name="tipoceleb">
-                <span class="checkmark"></span>
-            </label>
-            <label class="opcLabelCeleb tablink" onclick="openPage('Aniversario', this)">Aniversario
-                <input type="radio" name="tipoceleb" value="Aniversario">
-                <span class="checkmark"></span>
-            </label>
-            <label class="opcLabelCeleb tablink" onclick="openPage('FiestaCorporativa', this)">Fiesta Corporativa
-                <input type="radio" name="tipoceleb" value="FiestaCorporativa">
-                <span class="checkmark"></span>
-            </label>
-        </div>
-    </div>
-
-    <div id="Cumpleaños" class="tabcontent">
-        <button id="Aperitivos" class="accordion">Torta</button>
-        <div class="panel">
-            <div class="aperitivos">
-                <div class="opcAprtvs">
-                    <div class="opcLabel">
-                        <p>Torta de Chocolate</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Canape: Camaron/Alcaparra">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Torta de 3 Leches</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Canape: Palmito/Ciboulette">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Torta de Mil hojas</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Canape: Palmito/Ciboulette">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Torta Personalizada</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Canape: Choritos en Aceite/Queso Crema">Agregar</button>
-                    </div>
+    <!-- Modal Agregar Servicio-->
+    <div class="modal fade" id="mymodal" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modalAgregar-header">
+                    Title
                 </div>
+                <form id="modal-form" method="post" action="{% url 'agregar_servicio_cotizacion' %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="modal-content-agregar">
+                            <label for="select-cotizacion">Agregar a:</label>
+                            <select id="select-cotizacion" name="cotizacion">
+                                <option value="seleccionCotizacion" selected>Seleccione una Cotización...</option>
+                                {% for cotizacion in cotizaciones %}
+                                <option value="{{ cotizacion.nroCotizacion }}">{{ cotizacion.nombreCotizacion }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" oninput="calcularPrecioTrago()" value="1">
+                        </div>
+                        <div style="display: flex;">
+                            <label for="">Precio:</label>
+                            <div class="modal-precio" style="margin-left: 30px;">
+                                Precio
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="cantidad-actualizada" name="cantidad-actualizada" value="">
+                    <input type="hidden" id="nombre-servicio" name="nombre_servicio" value="">
+                    <input type="hidden" id="cotizacionSeleccionada" name="cotizacionSeleccionada" value="">
+                    <input type="hidden" id="nombreCotizacion" name="nombreCotizacion" value="">
+                    <div id="modal-footer" class="modal-footer">
+                        <button id="btn-cancelar" type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                            oninput="restablecerModal()">
+                            Cerrar
+                        </button>
+                        <button id="btn-agregar" type="button" class="btn-agregar" data-bs-dismiss="modal">
+                            Agregar
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <button id="Aperitivos" class="accordion">Decoración</button>
-        <div class="panel">
-
-        </div>
-
-        <button id="Aperitivos" class="accordion">Animador</button>
-        <div class="panel">
-
-        </div>
-
-        <button id="Aperitivos" class="accordion">Catering</button>
-        <div class="panel">
-
-        </div>
-
-        <button id="Aperitivos" class="accordion">Dj</button>
-        <div class="panel">
-
-        </div>
-
-        <button id="Aperitivos" class="accordion">Juegos Inflables</button>
-        <div class="panel">
-
-        </div>
-
     </div>
 
-    <div id="Aniversario" class="tabcontent">
-        <button id="Aperitivos" class="accordion">Catering</button>
-        <div class="panel">
+    <div class="tipo-celeb">
+        <button class="tablinks" onclick="openTipoCeleb(event, 'Cumpleaños')" id="defaultOpenCeleb">Cumpleaños</button>
+        <button class="tablinks" onclick="openTipoCeleb(event, 'Aniversario')">Aniversario</button>
+        <button class="tablinks" onclick="openTipoCeleb(event, 'Fiesta')">Fiesta</button>
+    </div>
 
+    <div id="Cumpleaños" class="tabCelebContent">
+        <div class="tabCumpleaños">
+            <button class="tablinksCumple" onclick="openCumple(event, 'Torta')" id="defaultOpenCumple">Torta</button>
+            <button class="tablinksCumple" onclick="openCumple(event, 'Decoración')">Decoración</button>
+            <button class="tablinksCumple" onclick="openCumple(event, 'Personal')">Personal</button>
+            <button class="tablinksCumple" onclick="openCumple(event, 'Catering')">Catering</button>
+            <button class="tablinksCumple" onclick="openCumple(event, 'Juegos Inflables')">Juegos Inflables</button>
         </div>
-
-        <button id="Aperitivos" class="accordion">Decoracion</button>
-        <div class="panel">
-
+        <div id="Torta" class="tabContentCumple">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "cumpleaños" %}
+                    {% if servicio.tipo_servicio == "torta" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
-
-        <button id="Aperitivos" class="accordion">Dj</button>
-        <div class="panel">
-
+        <div id="Decoración" class="tabContentCumple">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "cumpleaños" %}
+                    {% if servicio.tipo_servicio == "decoracion" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
-
-        <button id="Aperitivos" class="accordion">fotografo</button>
-        <div class="panel">
-
+        <div id="Personal" class="tabContentCumple">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "cumpleaños" %}
+                    {% if servicio.tipo_servicio == "personal" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
-
-        <button id="Aperitivos" class="accordion">Arreglo Floral Especial</button>
-        <div class="panel">
-
+        <div id="Catering" class="tabContentCumple">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "cumpleaños" %}
+                    {% if servicio.tipo_servicio == "catering" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Juegos Inflables" class="tabContentCumple">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "cumpleaños" %}
+                    {% if servicio.tipo_servicio == "juegos_inflables" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}        
+                {% endfor %}
+            </div>
         </div>
     </div>
 
-    <div id="FiestaCorporativa" class="tabcontent">
-        <button id="Aperitivos" class="accordion">Catering</button>
-        <div class="panel">
+    <div id="Aniversario" class="tabCelebContent">
+        <div class="tabAniversario">
+            <button class="tablinksAniv" onclick="openAniv(event, 'Catering')" id="defaultOpenAniv">Catering</button>
+            <button class="tablinksAniv" onclick="openAniv(event, 'Decoracion')">Decoracion</button>
+            <button class="tablinksAniv" onclick="openAniv(event, 'Personal')">Personal</button>
+            <button class="tablinksAniv" onclick="openAniv(event, 'ArregloFloral')">Arreglo Floral Especial</button>
+        </div>
+        <div id="Catering" class="tabContentAniv">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "aniversario" %}
+                    {% if servicio.tipo_servicio == "catering" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Decoracion" class="tabContentAniv">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "aniversario" %}
+                    {% if servicio.tipo_servicio == "decoracion" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Personal" class="tabContentAniv">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "aniversario" %}
+                    {% if servicio.tipo_servicio == "personal" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="ArregloFloral" class="tabContentAniv">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_evento == "aniversario" %}
+                    {% if servicio.tipo_servicio == "torta" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
+    <div id="Fiesta" class="tabCelebContent">
+        <div class="tabFiesta">
+            <button class="tablinksFiesta" onclick="openFiesta(event, 'Catering')" id="defaultOpenFiesta">Catering</button>
+            <button class="tablinksFiesta" onclick="openFiesta(event, 'Entrenemiento')">Entrenemiento</button>
+            <button class="tablinksFiesta" onclick="openFiesta(event, 'Decoración')">Decoración</button>
+            <button class="tablinksFiesta" onclick="openFiesta(event, 'Regalos')">Regalos</button>
+            <button class="tablinksFiesta" onclick="openFiesta(event, 'Personal')">Personal</button>
+            <button class="tablinksFiesta" onclick="openFiesta(event, 'Transporte')">Servicio de Transporte</button>
         </div>
 
-        <button id="Aperitivos" class="accordion">Entrenemiento</button>
-        <div class="panel">
-
+        <div id="Catering" class="tabContentFiesta">
+        </div>
+        <div id="Entrenemiento" class="tabContentFiesta">
+        </div>
+        <div id="Decoracion" class="tabContentFiesta">
+        </div>
+        <div id="Regalos" class="tabContentFiesta">
+        </div>
+        <div id="Personal" class="tabContentFiesta">
+        </div>
+        <div id="Transporte" class="tabContentFiesta">
         </div>
 
-        <button id="Aperitivos" class="accordion">Decoración</button>
-        <div class="panel">
-
-        </div>
-
-        <button id="Aperitivos" class="accordion">Regalos</button>
-        <div class="panel">
-
-        </div>
-
-        <button id="Aperitivos" class="accordion">Fotografo</button>
-        <div class="panel">
-
-        </div>
-
-        <button id="Aperitivos" class="accordion">Servicio de Transporte</button>
-        <div class="panel">
-
-        </div>
-
-        <button id="Aperitivos" class="accordion">Personal</button>
-        <div class="panel">
-
-        </div>
     </div>
 
     <br><br><br><br>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static '/js/btnSubir.js'%}"></script>
-    <script src="{% static '/js/carrito.js'%}"></script>
-    <script src="{% static '/js/acordion.js'%}"></script>
+    <script src="{% static '/js/modalAgregar.js'%}"></script>
     <script src="{% static '/js/header.js'%}"></script>
     <script src="{% static '/js/tipoCeleb.js'%}"></script>
+    <script src="{% static '/js/agregarServicio.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

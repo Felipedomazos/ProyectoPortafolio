@@ -47,15 +47,9 @@
                             <a href="{% url 'Inicio' %}">Contacto</a>
                         </li>
                         <li class="sidebar-container">
-                            <a onclick="openNav()">
+                            <a href="{% url 'carrito' %}">
                                 <i class="fa-solid fa-cart-shopping" style="font-size: 27px; margin-top: 2px;"></i>
                             </a>
-                            <div id="SidenavCarrito" class="sidenavCarrito">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                                <p style="text-align: center; text-shadow: 0px 3px #818181;">Productos</p>
-                                <div id="listaProductos" class="lista-productos">
-                                </div>
-                            </div>
                         </li>
                         <li class="sidebar-container">
                             <a onclick="openSidebar()">
@@ -78,123 +72,51 @@
             </div>
         </nav>
 
-        <!-- Modal Agregar Producto-->
+        <!-- Modal Agregar Servicio-->
         <div class="modal fade" id="mymodal" data-bs-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header modalAgregar-header">
                         Title
                     </div>
-                    <div class="modal-body">
-                        <div class="modal-content-agregar">
-                            <label for="select-cotizacion">Agregar a:</label>
-                            <select id="select-cotizacion" name="cotizacion">
-                                <option value="seleccionCotizacion">Seleccione una Cotización...</option>
-                                <option value="nueva-cotizacion">Nueva Cotización</option>
-                                {% for cotizacion in cotizaciones %}
-                                <option value="{{ cotizacion.nroCotizacion }}">{{ cotizacion.nombreCotizacion }}</option>
-                                {% endfor %}
-                            </select>
+                    <form id="modal-form" method="post" action="{% url 'agregar_servicio_cotizacion' %}">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="modal-content-agregar">
+                                <label for="select-cotizacion">Agregar a:</label>
+                                <select id="select-cotizacion" name="cotizacion">
+                                    <option value="seleccionCotizacion" selected>Seleccione una Cotización...</option>
+                                    {% for cotizacion in cotizaciones %}
+                                    <option value="{{ cotizacion.nroCotizacion }}">{{ cotizacion.nombreCotizacion }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div>
+                                <label for="cantidad">Cantidad:</label>
+                                <input type="number" id="cantidad" oninput="calcularPrecioTrago()" value="1">
+                            </div>
+                            <div style="display: flex;">
+                                <label for="">Precio:</label>
+                                <div class="modal-precio" style="margin-left: 30px;">
+                                    Precio
+                                </div>
+                            </div>
                         </div>
-                        <div id="nombre-cotizacion" style="display: none;">
-                            <label for="input-nombre-cotizacion">Nombre Cotización:</label>
-                            <input type="text" id="input-nombre-cotizacion">
+                        <input type="hidden" id="cantidad-actualizada" name="cantidad-actualizada" value="">
+                        <input type="hidden" id="nombre-servicio" name="nombre_servicio" value="">
+                        <input type="hidden" id="cotizacionSeleccionada" name="cotizacionSeleccionada" value="">
+                        <input type="hidden" id="nombreCotizacion" name="nombreCotizacion" value="">
+                        <div id="modal-footer" class="modal-footer">
+                            <button id="btn-cancelar" type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                oninput="restablecerModal()">
+                                Cerrar
+                            </button>
+                            <button id="btn-agregar" type="button" class="btn-agregar" data-bs-dismiss="modal">
+                                Agregar
+                            </button>
                         </div>
-                        <div>
-                            <label for="">Cantidad:</label>
-                            <input type="number" id="cantidad" oninput="calcularPrecio()">
-                        </div>
-                        <div>
-                            <label for="">Precio:</label>
-                            <input type="text" id="precio" readonly>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                            Cerrar
-                        </button>
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
-                            Agregar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Agregar Servicio-->
-        <div class="modal fade" id="mymodalServ" data-bs-backdrop="static">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header modalAgregar-header">
-                        Title
-                    </div>
-                    <div class="modal-body">
-                        <div class="modal-content-agregar">
-                            <label for="select-cotizacion-serv">Agregar a:</label>
-                            <select id="select-cotizacion-serv" name="cotizacion">
-                                <option value="seleccionCotizacion">Seleccione una Cotización...</option>
-                                <option value="nueva-cotizacion">Nueva Cotización</option>
-                                {% for cotizacion in cotizaciones %}
-                                <option value="{{ cotizacion.nroCotizacion }}">{{ cotizacion.nombreCotizacion }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div id="nombre-cotizacion-serv" style="display: none;">
-                            <label for="input-nombre-cotizacion-serv">Nombre Cotización:</label>
-                            <input type="text" id="input-nombre-cotizacion-serv">
-                        </div>
-                        <div>
-                            <label for="">Precio:</label>
-                            <input type="text" id="precioServ" readonly>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                            Cerrar
-                        </button>
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
-                            Agregar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Agregar Tragos-->
-        <div class="modal fade" id="mymodalTrgs" data-bs-backdrop="static">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header modalTrgs-header">
-                        Title
-                    </div>
-                    <div class="modal-body">
-                        <div class="modal-content-agregar">
-                            <label for="select-cotizacion-trgs">Agregar a:</label>
-                            <select id="select-cotizacion-trgs" name="cotizacion">
-                                <option value="seleccionCotizacion">Seleccione una Cotización...</option>
-                                <option value="nueva-cotizacion">Nueva Cotización</option>
-                                {% for cotizacion in cotizaciones %}
-                                <option value="{{ cotizacion.nroCotizacion }}">{{ cotizacion.nombreCotizacion }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div id="nombre-cotizacion-trgs" style="display: none;">
-                            <label for="input-nombre-cotizacion-trgs">Nombre Cotización:</label>
-                            <input type="text" id="input-nombre-cotizacion-trgs">
-                        </div>
-                        <div>
-                            <label for="">Precio:</label>
-                            <input type="text" id="precioTrgs" readonly>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                            Cerrar
-                        </button>
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
-                            Agregar
-                        </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -211,291 +133,535 @@
         <i class="fa-solid fa-circle-up" style="font-size: 25px;"></i>
     </a>
 
-    <div style="text-align: center;">
-        <ul class="opcMatri">
-            <li>
-                <a href="#Bar">Bar</a>
-            </li>
-            <li>
-                <a href="#Aperitivos">Aperitivos</a>
-            </li>
-            <li>
-                <a href="#Entrada">Entrada</a>
-            </li>
-            <li>
-                <a href="#PlatoPrincipal">Plato Principal</a>
-            </li>
-            <li>
-                <a href="#Postre">Postre</a>
-            </li>
-            <li>
-                <a href="#Personal">Personal</a>
-            </li>
-            <li>
-                <a href="#VyC">Vajilla y Cristaleria</a>
-            </li>
-            <li>
-                <a href="#Sonido">Dj (Sonido)</a>
-            </li>
-            <li>
-                <a href="#Iluminacion">Iluminacion</a>
-            </li>
-            <li>
-                <a href="#Decoracion">Decoracion</a>
-            </li>
-            <li>
-                <a href="#Fotografo">Fotografo</a>
-            </li>
-        </ul>
+    <div class="tabMatri">
+        <button class="tablinks" onclick="openServ(event, 'Bar')" id="defaultOpen">Bar</button>
+        <button class="tablinks" onclick="openServ(event, 'Aperitivos')">Aperitivos</button>
+        <button class="tablinks" onclick="openServ(event, 'Entrada')">Entrada</button>
+        <button class="tablinks" onclick="openServ(event, 'Plato Principal')">Plato Principal</button>
+        <button class="tablinks" onclick="openServ(event, 'Postre')">Postre</button>
+        <button class="tablinks" onclick="openServ(event, 'Personal')">Personal</button>
+        <button class="tablinks" onclick="openServ(event, 'Vajilla y Cristaleria')">Vajilla y Cristaleria</button>
+        <button class="tablinks" onclick="openServ(event, 'Decoración')">Decoración</button>
     </div>
 
-
-    <!--Bar-->
-    <button id="Bar" class="accordion">Bar</button>
-    <div class="panel">
-        <button class="accordionMini">Tragos</button>
-        <div class="panel">
-            <div class="opcBar">
-                <div class="opcFiltros">
-                    <input class="bscrTrago" type="text" id="searchInput" placeholder="Buscar...">
-                    <label style="margin-bottom: 2%;" for="">Filtrar: </label>
-                    <label><input type="checkbox" name="ron" value="ron"> Ron</label>
-                    <label><input type="checkbox" name="whiskey" value="whiskey"> Whiskey</label>
-                    <label><input type="checkbox" name="tequila" value="tequila"> Tequila</label>
-                    <label><input type="checkbox" name="pisco" value="pisco"> Pisco</label>
-                    <label><input type="checkbox" name="cerveza" value="cerveza"> Cerveza</label>
-                </div>
-                <div class="opcTragos">
-                    <label><input type="checkbox" name="mojito" value="mojito ron"> Mojito</label>
-                    <label><input type="checkbox" name="margarita" value="margarita tequila"> Margarita</label>
-                    <label><input type="checkbox" name="piscola" value="piscola pisco"> Piscola</label>
-                    <label><input type="checkbox" name="oldfashioned" value="oldfashioned whiskey"> Old
-                        Fashioned</label>
-                    <label><input type="checkbox" name="michelada" value="michelada cerveza"> Michelada</label>
-                    <label><input type="checkbox" name="daiquiri" value="daiquiri ron"> Daiquiri</label>
-                    <label><input type="checkbox" name="manhattan" value="manhattan whiskey"> Manhattan</label>
-                </div>
-                <button class="btnAgregarTrago" id="botonSubmit" style="display: none;">Agregar</button>
-            </div>
+    <div id="Bar" class="tabMatricontent">
+        <div class="subServBar">
+            <button class="tablinksSubServBar" onclick="openSubServBar(event, 'Destilados')"
+                id="defaultOpenSubServBar">Destilados</button>
+            <button class="tablinksSubServBar" onclick="openSubServBar(event, 'Bebidas')">Bebidas</button>
+            <button class="tablinksSubServBar" onclick="openSubServBar(event, 'Bar Adicional')">Bar Adicional</button>
         </div>
-        <button class="accordionMini">Bar Adicional</button>
-        <div class="panel">
-            <div class="aperitivos">
-                <div class="opcAprtvs">
-                    <div class="opcLabel">
-                        <p>Beer Bar</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodalServ"
-                            data-bs-heading="Beer Bar">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Lemonade Bar</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodalServ"
-                            data-bs-heading="Lemonade Bar">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Cocktail Bar</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodalServ"
-                            data-bs-heading="Cocktail Bar">Agregar</button>
+        <div id="Destilados" class="tabSubServContentBar">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "destilado" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }} - 1 Litro"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
                     </div>
                 </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Bebidas" class="tabSubServContentBar">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "bebida" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }} - 3 Litros"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Bar Adicional" class="tabSubServContentBar">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "bar_adicional" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }} - 10 Unidades"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
 
-    <!--Aperitivos-->
-    <button id="Aperitivos" class="accordion">Aperitivos</button>
-    <div class="panel">
-        <button class="accordionMini">Canapés</button>
-        <div class="panel">
-            <div class="aperitivos">
-                <div class="opcAprtvs">
-                    <div class="opcLabel">
-                        <p>Camaron / Alcaparra</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Canape: Camaron/Alcaparra">Agregar</button>
+    <div id="Aperitivos" class="tabMatricontent">
+        <div class="subServAperitivos">
+            <button class="tablinksSubServAperitivos" onclick="openSubServAperitivos(event, 'Canapes')"
+                id="defaultOpenSubServAperitivos">Canapes</button>
+            <button class="tablinksSubServAperitivos"
+                onclick="openSubServAperitivos(event, 'Tapaditos')">Tapaditos</button>
+            <button class="tablinksSubServAperitivos"
+                onclick="openSubServAperitivos(event, 'Brochetas')">Brochetas</button>
+            <button class="tablinksSubServAperitivos"
+                onclick="openSubServAperitivos(event, 'Empanadas Cocktail')">Empanadas
+                Cocktail</button>
+        </div>
+        <div id="Canapes" class="tabSubServContentAperitivos">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "canapes" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
                     </div>
-                    <div class="opcLabel">
-                        <p>Palmito / Ciboulette</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Canape: Palmito/Ciboulette">Agregar</button>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Tapaditos" class="tabSubServContentAperitivos">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "tapaditos" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
                     </div>
-                    <div class="opcLabel">
-                        <p>Choritos en Aceite / Queso Crema</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Canape: Choritos en Aceite/Queso Crema">Agregar</button>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Brochetas" class="tabSubServContentAperitivos">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "brochetas" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
                     </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Empanadas Cocktail" class="tabSubServContentAperitivos">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "empanadas_cocktail" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"    
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="Entrada" class="tabMatricontent">
+        <div class="subServEntrada">
+            <button class="tablinksSubServEntrada" onclick="openSubServEntrada(event, 'Menu Normal Entrada')" id="defaultOpenSubServEntrada">Menú Normal</button>
+            <button class="tablinksSubServEntrada" onclick="openSubServEntrada(event, 'Menu Niños Entrada')">Menú Niños</button>
+        </div>
+        <div id="Menu Normal Entrada" class="tabSubServContentEntrada">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_servicio == "entrada" %}
+                    {% if servicio.subtipo_servicio == "menu_normal" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"    
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Menu Niños Entrada" class="tabSubServContentEntrada">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_servicio == "entrada" %}
+                {% if servicio.subtipo_servicio == "menu_ninos" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"    
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="Plato Principal" class="tabMatricontent">
+        <div class="subServPrincipal">
+            <button class="tablinksSubServPrincipal" onclick="openSubServPrincipal(event, 'Menu Normal Principal')" id="defaultOpenSubServPrincipal">Menú Normal</button>
+            <button class="tablinksSubServPrincipal" onclick="openSubServPrincipal(event, 'Menu Niños Principal')">Menú Niños</button>
+        </div>
+        <div id="Menu Normal Principal" class="tabSubServContentPrincipal">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_servicio == "plato_principal" %}
+                    {% if servicio.subtipo_servicio == "menu_normal" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"    
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Menu Niños Principal" class="tabSubServContentPrincipal">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_servicio == "plato_principal" %}
+                {% if servicio.subtipo_servicio == "menu_ninos" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"    
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="Postre" class="tabMatricontent">
+        <div style="text-align: center; margin: 3% auto 7% auto;">
+            <h1>Seleccione un Postre Bufet</h1>
+            <h6>(Cada una de las opciones de postre bufet contiene los siguientes postres: Macarons, Cupcakes, Trifles, 
+                Esponjado de maracuyá y Panna cotta de Baileys)</h6>
+        </div>
+        <div>
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.tipo_servicio == "postre" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>Postre Bufet - {{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"    
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="Personal" class="tabMatricontent">
+        <div class="container">
+            <div style="text-align: center; margin: auto auto 5% auto;">
+                <h1>Seleccione el Personal Necesario</h1>
+            </div>
+            <div>
+                <div class="content-subtipo">
+                    {% for servicio in objetos %}
+                    {% if servicio.tipo_servicio == "personal" %}
+                    <div class="cardServ">
+                        <div class="card-content-serv">
+                            <div class="text-container-serv">
+                                <p>{{ servicio.nombrePersona}} - {{ servicio.nombreServicio }}</p>
+                                <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                    data-nombre-servicio="{{ servicio.nombreServicio }}"    
+                                    data-bs-heading="{{ servicio.nombreServicio }}"
+                                    data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        <button class="accordionMini">Tapaditos</button>
-        <div class="panel">
-            <div class="aperitivos">
-                <div class="opcAprtvs">
-                    <div class="opcLabel">
-                        <p>Ave / Pimenton</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Tapadito: Ave Pimenton">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Pavo / Lechuga hidroponica</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Tapadito: Pavo / Lechuga Hidroponica">Agregar</button>
+    </div>
+
+    <div id="Vajilla y Cristaleria" class="tabMatricontent">
+        <div class="subServVyC">
+            <button class="tablinksSubServVyC" onclick="openSubServVyC(event, 'Platos')"
+                id="defaultOpenSubServVyC">Platos</button>
+            <button class="tablinksSubServVyC" onclick="openSubServVyC(event, 'Cubiertos')">Cubiertos</button>
+            <button class="tablinksSubServVyC" onclick="openSubServVyC(event, 'Bandejas')">Bandejas</button>
+            <button class="tablinksSubServVyC" onclick="openSubServVyC(event, 'Tazas')">Tazas</button>
+            <button class="tablinksSubServVyC" onclick="openSubServVyC(event, 'Copas')">Copas</button>
+            <button class="tablinksSubServVyC" onclick="openSubServVyC(event, 'Vasos')">Vasos</button>
+        </div>
+        <div id="Platos" class="tabSubServContentVyC">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if "Plato" in servicio.nombreServicio %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
                     </div>
                 </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
-        <button class="accordionMini">Brochetas</button>
-        <div class="panel">
-            <div class="aperitivos">
-                <div class="opcAprtvs">
-                    <div class="opcLabel">
-                        <p>Queso de cabra / Tomate Cherry / Albahaca</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Brocheta: Queso de cabra / Tomate Cherry / Albahaca">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Queso Matecoso / Tomate Cherry / Aceituna verde</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Brocheta: Queso Mantecoso / Tomate Cherry / Aceituna verde">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Champiñón / Zapallo italiano / Berenjena / Rúcula / Tomate Cherry</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Brocheta: Champiñón / Zapallo italiano / Berenjena / Rúcula / Tomate Cherry">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Uva verde / Mandarina / Uva morada / Kiwi</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Brocheta: Uva verde / Mandarina / Uva morada / Kiwi">Agregar</button>
+        <div id="Cubiertos" class="tabSubServContentVyC">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if "Cuchara" in servicio.nombreServicio or "Cuchillo" in servicio.nombreServicio or "Tenedor" in servicio.nombreServicio %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
                     </div>
                 </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
-        <button class="accordionMini">Empandas Cocktail</button>
-        <div class="panel">
-            <div class="aperitivos">
-                <div class="opcAprtvs">
-                    <div class="opcLabel">
-                        <p>Queso</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Empanada Cocktail: Queso">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Pino</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Empanada Cocktail: Pino">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Jamon Queso</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Empanada Cocktail: Jamon Queso">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Mechada</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Empanada Cocktail: Mechada">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Camaron Queso</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Empanada Cocktail: Camaron Queso">Agregar</button>
-                    </div>
-                    <div class="opcLabel">
-                        <p>Champiñon Queso</p>
-                        <button class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mymodal"
-                            data-bs-heading="Empanada Cocktail: Champiñon Queso">Agregar</button>
+        <div id="Bandejas" class="tabSubServContentVyC">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if "Bandeja" in servicio.nombreServicio %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
                     </div>
                 </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Tazas" class="tabSubServContentVyC">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if "Taza" in servicio.nombreServicio %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }} (Plato incluido)"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Copas" class="tabSubServContentVyC">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if "Copa" in servicio.nombreServicio %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Vasos" class="tabSubServContentVyC">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if "Vaso" in servicio.nombreServicio %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
 
-    <!--Entrada-->
-    <button id="Entrada" class="accordion">Entrada<p class="subChico">(Elija 2 opciones)</p></button>
-    <div class="panel">
-        <div class="matrimonio">
-            <div class="opcComida">
-                <label class="opcLabelComida">Causa de Pulpo
-                    <input type="radio" checked="checked" value="Cumpleaños" name="tipoceleb">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="opcLabelComida">Gazpacho de beterraga y verduras
-                    <input type="radio" name="tipoceleb" value="Aniversario">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="opcLabelComida">Tataki de Salmón
-                    <input type="radio" name="tipoceleb" value="FiestaCorporativa">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="opcLabelComida">Atún sellado y Hummus
-                    <input type="radio" name="tipoceleb" value="FiestaCorporativa">
-                    <span class="checkmark"></span>
-                </label>
+    <div id="Decoración" class="tabMatricontent">
+        <div class="subServDeco">
+            <button class="tablinksSubServDeco" onclick="openSubServDeco(event, 'Manteleria')"
+                id="defaultOpenSubServDeco">Manteleria</button>
+            <button class="tablinksSubServDeco" onclick="openSubServDeco(event, 'Mesas')">Mesas</button>
+            <button class="tablinksSubServDeco" onclick="openSubServDeco(event, 'Sillas')">Sillas</button>
+            <button class="tablinksSubServDeco" onclick="openSubServDeco(event, 'Otros')">Otros</button>
+        </div>
+        <div id="Manteleria" class="tabSubServContentDeco">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "manteleria" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
-    </div>
-
-    <!--Plato Principal-->
-    <button id="PlatoPrincipal" class="accordion">Plato Principal<p class="subChico">(Elija 2 opciones)</p></button>
-    <div class="panel">
-        <div class="matrimonio">
-            <div class="opcComida">
-                <label class="opcLabelComida">Risotto de pollo con curry
-                    <input type="radio" checked="checked" value="Cumpleaños" name="tipoceleb">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="opcLabelComida">Langostinos al curry con arroz basmati
-                    <input type="radio" name="tipoceleb" value="Aniversario">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="opcLabelComida">Magret de pato con salsa de frambuesa y patatas daphinoise
-                    <input type="radio" name="tipoceleb" value="FiestaCorporativa">
-                    <span class="checkmark"></span>
-                </label>
+        <div id="Mesas" class="tabSubServContentDeco">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "mesas" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"    
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
-    </div>
-
-    <!--Postre-->
-    <button id="Postre" class="accordion">Postre</button>
-    <div class="panel">
-
-    </div>
-
-    <!--Personal-->
-    <button id="Personal" class="accordion">Personal</button>
-    <div class="panel">
-
-    </div>
-
-    <!--VyC-->
-    <button id="VyC" class="accordion">Vajilla y Cristaleria</button>
-    <div class="panel">
-
-    </div>
-
-    <!--Sonido-->
-    <button id="Sonido" class="accordion">Dj (Sonido)</button>
-    <div class="panel">
-
-    </div>
-
-    <!--Iluminacion-->
-    <button id="Iluminacion" class="accordion">Iluminación</button>
-    <div class="panel">
-
-    </div>
-
-    <!--Decoracion-->
-    <button id="Decoracion" class="accordion">Decoración</button>
-    <div class="panel">
-
-    </div>
-
-    <!--Fotografo-->
-    <button id="Fotografo" class="accordion">Fotografo</button>
-    <div class="panel">
-
+        <div id="Sillas" class="tabSubServContentDeco">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "sillas" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"    
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="Otros" class="tabSubServContentDeco">
+            <div class="content-subtipo">
+                {% for servicio in objetos %}
+                {% if servicio.subtipo_servicio == "otros" %}
+                <div class="cardServ">
+                    <div class="card-content-serv">
+                        <div class="text-container-serv">
+                            <p>{{ servicio.nombreServicio }}</p>
+                            <button class="agregarButton" data-bs-toggle="modal" data-bs-target="#mymodal"
+                                data-nombre-servicio="{{ servicio.nombreServicio }}"
+                                data-bs-heading="{{ servicio.nombreServicio }}"
+                                data-bs-precio="{{ servicio.precioServicio }}">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 
@@ -516,15 +682,14 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static '/js/btnSubir.js'%}"></script>
-    <script src="{% static '/js/carrito.js'%}"></script>
-    <script src="{% static '/js/calcularValorProducto.js'%}"></script>
     <script src="{% static '/js/modalAgregar.js'%}"></script>
     <script src="{% static '/js/header.js'%}"></script>
     <script src="{% static '/js/acordion.js'%}"></script>
-    <script src="{% static '/js/busquedaTragos.js'%}"></script>
+    <script src="{% static '/js/agregarServicio.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

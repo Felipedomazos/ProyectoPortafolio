@@ -63,8 +63,8 @@
                             </a>
                             <div class="sidebar">
                                 {% if request.session.cliente_nombre %}
-                                    <a href="#">{{ request.session.cliente_nombre }}</a>
-                                    <a href="#">Mis Cotizaciones</a>
+                                    <a href="{% url 'cuenta' %}">{{ request.session.cliente_nombre }}</a>
+                                    <a href="{% url 'cotizaciones' %}">Mis Cotizaciones</a>
                                     <a href="{% url 'administracion' %}">Administración</a>
                                     <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
                                 {% else %}
@@ -100,17 +100,21 @@
 
         <div class="tablas">
             {% for producto in objetos %}
-            <figure id="tabla" class="cardTabla"><img src="{% static '/' %}{{ producto.imagenProducto }}"/>
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
+            <figure class="cardTabla">
+                <img src="{% static '/' %}{{ producto.imagenProducto }}"/>
+                <div class="add-to-cart">
+                    <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span>
+                </div>
                 <figcaption>
                     <h3>{{ producto.nombreProducto }}<br>
-                        <h6>{{ producto.cantPersonas }} personas</h6>
+                    <h6>{{ producto.cantPersonas }} personas</h6>
                     </h3>
                     <hr>
                     <div class="price">
                         ${{ producto.precioProducto }}
                     </div>
-                </figcaption><a onclick="agregarAlCarrito('tabla')" href="#search"></a>
+                </figcaption>
+                <a href="{% url 'detalle' producto.nombreProducto %}"></a>
             </figure>
             {% endfor %}
         </div>
@@ -123,6 +127,7 @@
 
     <br><br><br><br>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static '/js/btnSubir.js'%}"></script>
     <script src="{% static '/js/carrito.js'%}"></script>
     <script src="{% static '/js/header.js'%}"></script>

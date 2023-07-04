@@ -99,17 +99,21 @@
 
         <div class="desayunos">
             {% for producto in objetos %}
-            <figure id="desayuno" class="cardDesayuno"><img src="{% static '/' %}{{ producto.imagenProducto }}"/>
-                <div class="add-to-cart"> <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span></div>
+            <figure id="desayuno" class="cardDesayuno">
+                <img src="{% static '/' %}{{ producto.imagenProducto }}"/>
+                <div class="add-to-cart">
+                    <i class="fa-solid fa-plus"></i><span>Añadir al carrito</span>
+                </div>
                 <figcaption>
                     <h3>{{ producto.nombreProducto }}<br>
-                        <h6>{{ producto.cantPersonas }} personas</h6>
+                    <h6>{{ producto.cantPersonas }} personas</h6>
                     </h3>
                     <hr>
                     <div class="price">
                         ${{ producto.precioProducto }}
                     </div>
-                </figcaption><a onclick="agregarAlCarrito('desayuno')" href="#search"></a>
+                </figcaption>
+                <a href="{% url 'detalle' producto.nombreProducto %}"></a>
             </figure>
             {% endfor %}
         </div>

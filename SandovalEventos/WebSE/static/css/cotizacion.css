@@ -2,21 +2,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 7% 5% 10% 5%;
+    margin: 7% 5% 5% 5%;
 }
 
 .opcCotizacion a{
     text-decoration: none;
     margin-right: 40px;
     font-size: 30px;
+    cursor: pointer;
 }
 
 .opcCotizacion i {
-    color: #981941;
+    color: black;
 }
 
 .opcCotizacion i:hover {
-    color: #e1326a;
+    color: #981941;
 }
 
 .textyopc p {
@@ -32,8 +33,15 @@
     justify-content: space-between;
     align-items: center;
     margin: 2% 5% 2% 5%;
-    height: 150px;
-    background-color: #981941;
+    height: 100px;
+    background: linear-gradient(to right, rgb(110, 110, 110), #981941);
+    border-radius: 10px;
+    background-size: 200% 100%;
+    transition: background-position 0.4s linear;
+}
+
+.cotizacion:hover {
+  background-position: -100% 0;
 }
 
 .cotizacion p {
@@ -53,8 +61,8 @@
     margin-right: 40px;
 }
 
-.modalCoti {
-    display: none; /* Ocultar por defecto */
+.modal-crear-coti {
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -62,31 +70,68 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    background-color: rgba(0, 0, 0, 0.5);
   }
-  
-  .modal-content-coti {
+  .modal-content-crear-coti {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 40%;
+    border-radius: 10px;
   }
-  .modal-content-coti h2{
+  .modal-content-crear-coti h2{
     margin-bottom: 10%;
   }
-
-  .modal-content-coti button {
+  .modal-content-crear-coti button {
     border: none;
     width: 40%;
     color: white;
     background-color: #981941;
     margin: 5% auto auto 30%;
     padding: 8px;
+    border-radius: 5px;
   }
-  .modal-content-coti button:hover {
+  .modal-content-crear-coti button:hover {
+    transform: scale(1.04);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.19) 0px 15px 12px;
+  }
+
+  .modal-elim-coti {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content-elim-coti {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    border-radius: 10px;
+  }
+  .modal-content-elim-coti h2{
+    margin-bottom: 10%;
+  }
+  .modal-content-elim-coti button {
+    border: none;
+    width: 40%;
     color: white;
-    background-color: #e1326a;
+    background-color: #981941;
+    margin: 5% auto auto 30%;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  .modal-content-elim-coti button:hover {
+    transform: scale(1.04);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.19) 0px 15px 12px;
   }
   
   /* Estilo para cerrar el modal */
@@ -96,7 +141,11 @@
     font-size: 28px;
     font-weight: bold;
   }
-  
+
+  .closeCoti:hover{
+    color: #981941;
+  }
+
   .close:hover,
   .close:focus {
     color: black;
@@ -115,4 +164,19 @@
     transition: opacity 1s ease;
     background-color: #890a32;
     color: #ffffff;
+}
+
+#btn-eliminar {
+  border: none;
+  width: 40%;
+  color: white;
+  background-color: #981941;
+  margin: 5% auto auto 30%;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+#btn-eliminar:hover {
+  transform: scale(1.04);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.19) 0px 15px 12px;
 }

@@ -220,10 +220,11 @@ input::-webkit-inner-spin-button {
   max-height: 183px;
   max-width: 300px;
   margin-top: 30px;
-  margin-left: 9%;
   margin-bottom: 30px;
   transition: transform 0.5s;
   border-radius: 20px;
+  margin-right: 40px;
+  margin-left: 40px;
 }
 .container-serv:hover {
   transform: scale(1.1);
@@ -275,6 +276,9 @@ input::-webkit-inner-spin-button {
   font-size: 25px;
   font-weight: lighter;
   color: black;
+}
+.contact-txt p a:hover {
+  color: #981941;
 }
 .contact-txt p span:hover {
   color: #981941;
@@ -472,5 +476,4 @@ i.fa-brands.fa-facebook {
   color: white;
   font-size: 22px;
 }
-
 

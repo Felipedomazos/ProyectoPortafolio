@@ -1,0 +1,83 @@
+.contentDetalle {
+    display: flex;
+}
+.imagenDetalle {
+    width: 550px;
+    height: 420px;
+}
+.imagenDetalle img {
+    min-width: 390px;
+    min-height: 420px;
+    max-width: 550px;
+    max-height: 410px;
+    padding: 40px;
+}
+.textoDetalle {
+    padding: 30px;
+}
+.nombreDetalle p {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.precioDetalle p {
+    font-size: 25px;
+}
+.descDetalle {
+    margin-top: 40px;
+}
+.descDetalle p {
+    font-size: 15px;
+}
+.carro {
+    margin-top: 50px;
+}
+.carro button.cantidad {
+    width: 22.95px;
+    border: none;
+    color: rgb(198, 198, 198);
+    background-color: #981941;
+    border-radius: 5px;
+}
+.carro button.cantidad:hover {
+    color: white;
+}
+.añadirCarro {
+    margin-left: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #981941;
+    color: white;
+}
+
+#quantity {
+    width: 50px;
+    height: 35px;
+    text-align: center;
+}
+
+.volver {
+    margin-left: 40px;
+    margin-top: 15px;
+}
+
+.btnVolver {
+    border: none;
+    background-color: transparent;
+    color: #981941;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.btnVolver:hover {
+    color: #981941;
+    text-shadow: 0.2em 0.2em 0.5em black
+}
+
+.productosRelacionados {
+    margin-left: 40px;
+}
+.productosRelacionados p {
+    font-size: 20px;
+}
